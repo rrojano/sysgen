@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="481" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -64,7 +64,7 @@
               <JTabbedPaneConstraints tabName="Altas">
                 <Property name="tabTitle" type="java.lang.String" value="Altas"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/rsc/icono_altas.gif"/>
+                  <Image iconType="3" name="/mx/uv/sysgen/Assets/icono_altas.gif"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -124,7 +124,7 @@
                           <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -213,7 +213,7 @@
               <JTabbedPaneConstraints tabName="Bajas">
                 <Property name="tabTitle" type="java.lang.String" value="Bajas"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/rsc/icono_bajas.gif"/>
+                  <Image iconType="3" name="/mx/uv/sysgen/Assets/icono_bajas.gif"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -265,7 +265,7 @@
                           <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -374,7 +374,7 @@
               <JTabbedPaneConstraints tabName="Cambios">
                 <Property name="tabTitle" type="java.lang.String" value="Cambios"/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/rsc/icono_modificaciones.gif"/>
+                  <Image iconType="3" name="/mx/uv/sysgen/Assets/icono_modificaciones.gif"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -423,7 +423,7 @@
                           <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
