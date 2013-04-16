@@ -4,6 +4,10 @@
  */ 
 package mx.uv.sysgen.BD;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,13 +19,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FConsultas1 extends javax.swing.JFrame {
     ResultSet resultados;
+    String u;
+    String c;
+    String e;
 
 public void tomaDatos(DefaultTableModel modelo){
     if (this.jTable2 == null)
         this.jTable2 = new JTable();
         this.jTable2.setModel(modelo);
 /*     */   }
-    
+
+public void configuraBD(BD b){
+    b.login=u;
+    b.password=c;
+    b.bd=e;
+    b.url="jdbc:mysql://localhost/"+e;
+    b.conectar(1);
+}
+
     
     
     /**
@@ -29,6 +44,18 @@ public void tomaDatos(DefaultTableModel modelo){
      */
     public FConsultas1() {
         initComponents();
+        final FconfBDtemporal conf=new FconfBDtemporal();
+        conf.configurar.addActionListener(new ActionListener(){        
+            public void actionPerformed(ActionEvent ex) {
+                       c=conf.TFcontraseña.getText();
+                       u=conf.TFusuario.getText();
+                       e=conf. TFesquema.getText();
+                       conf.dispose();
+                       
+            }
+        });
+        conf.setVisible(true);
+        conf.setAlwaysOnTop(true);
     }
 
     /**
@@ -148,7 +175,7 @@ public void tomaDatos(DefaultTableModel modelo){
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel modelo = new DefaultTableModel();
         BD base=new BD();
-        base.conectar(1);
+        configuraBD(base);
         ResultSet rs = base.consulta(this.jTextField1.getText());
         
         if (rs!=null){
