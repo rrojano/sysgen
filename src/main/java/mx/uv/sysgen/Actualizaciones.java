@@ -4,6 +4,8 @@
  */
 package mx.uv.sysgen;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Santiu
@@ -15,7 +17,7 @@ public class Actualizaciones extends javax.swing.JFrame {
      */
     public Actualizaciones() {
         initComponents();
-    }
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
