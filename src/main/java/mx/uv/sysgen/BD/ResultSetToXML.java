@@ -1,6 +1,6 @@
 package mx.uv.sysgen.BD;
 
-import java.io.FileWriter;
+import java.io.FileWriter; 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Connection;
