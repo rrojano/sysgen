@@ -31,8 +31,8 @@ try {
   Class.forName("com.mysql.jdbc.Driver");  
   conexion = DriverManager.getConnection(url, login, password);}
   else if (manejador==2){//Oracle
-  DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
-    conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:", "PROYECTOBD", password);
+  //DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+    //conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:", "PROYECTOBD", password);
   }
   else if (manejador==3){
       //IMPLEMENTAR OTRO
