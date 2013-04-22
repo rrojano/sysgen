@@ -25,7 +25,7 @@ public int manejador = 1; //MySQL
                       // = 3; //el otro
 Connection conexion = null;
 
-
+//Conecta la base de datos, usen 1 porque ahora sólo funciona SQL
 public void conectar(int i) {
 
 try {
@@ -56,7 +56,7 @@ try {
         mostrarMensaje(ex.getMessage());
         }
 }
-
+//Cierra la conexión, cuando cierren su ventana llamen a este método
 public void desconectar(){
     try
     {
@@ -66,7 +66,7 @@ public void desconectar(){
     	mostrarMensaje("error al cerrar la conexiÃ³n");
     }
 }
-
+//a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 public void insertar(String a) {
       try {
         Statement s = this.conexion.createStatement();
@@ -79,7 +79,7 @@ public void insertar(String a) {
 }
 
 
-
+//hace una consulta a partir de una cadena y la devuelve a un ResultSet
 public ResultSet consulta(String a){
      ResultSet rs = null;
      try
@@ -100,6 +100,12 @@ public ResultSet consulta(String a){
      return rs;
 }
 
+//crea un modelo de tabla, para JTable, a partir de una cadena
+//llámenlo así 
+//JTable miTabla=new JTable();
+//.....código de la tabla
+// DefaultTableModel modelo=consultaAmodelo(consulta);
+// miTabla.setModel(modelo);
 public DefaultTableModel consultaAmodelo(String consulta){    
     ResultSet rs=this.consulta(consulta);
     DefaultTableModel modelo=new DefaultTableModel();
@@ -107,8 +113,8 @@ public DefaultTableModel consultaAmodelo(String consulta){
     return modelo;
 }
 
-
-public LinkedList<String> meteCampos(String tabla) throws SQLException{
+//regresa los campos de una tabla en una lista ligada
+public LinkedList<String> getCampos(String tabla) throws SQLException{
      ResultSet rs=this.consulta("select * from "+tabla);
      rs.next();
      System.out.println("select * from "+tabla);
@@ -128,8 +134,8 @@ public LinkedList<String> meteCampos(String tabla) throws SQLException{
      }
 
 }    
-    
-public LinkedList <String> meteTablas() throws SQLException{
+//regresa las tablas de un esquema o BD, en el que se hizo la conexión    
+public LinkedList <String> getTablas() throws SQLException{
      LinkedList<String> arr= new LinkedList<String>();
     
       DatabaseMetaData md = this.conexion.getMetaData();

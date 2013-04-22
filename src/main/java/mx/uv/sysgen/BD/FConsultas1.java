@@ -4,7 +4,7 @@
  */ 
 package mx.uv.sysgen.BD;
 
-import java.awt.Component;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -326,7 +326,7 @@ public void configuraBD(BD b){
        configuraBD(base);
         LinkedList<String> a;
         try {
-            a = base.meteTablas();
+            a = base.getTablas();
             for (int i=0;i<a.size();i++)
              JCBtabla.addItem(a.get(i));
         } catch (SQLException ex) {
@@ -344,7 +344,7 @@ public void configuraBD(BD b){
         BD base=new BD();
         configuraBD(base);
         try {
-            letreros=base.meteCampos(tab);
+            letreros=base.getCampos(tab);
         } catch (SQLException ex) {
             Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
         }
