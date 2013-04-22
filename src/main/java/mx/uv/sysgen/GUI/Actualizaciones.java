@@ -4,8 +4,6 @@
  */
 package mx.uv.sysgen;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Santiu
@@ -17,7 +15,7 @@ public class Actualizaciones extends javax.swing.JFrame {
      */
     public Actualizaciones() {
         initComponents();
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,10 +136,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Altas", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_altas.gif")), jPanel1); // NOI18N
+        jTabbedPane1.addTab("Altas", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_altas.gif")), jPanel1); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel5.setText("Tabla:");
@@ -222,10 +220,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Bajas", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_bajas.gif")), jPanel2); // NOI18N
+        jTabbedPane1.addTab("Bajas", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_bajas.gif")), jPanel2); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel7.setText("Tabla:");
@@ -290,10 +288,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Cambios", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_modificaciones.gif")), jPanel3); // NOI18N
+        jTabbedPane1.addTab("Cambios", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_modificaciones.gif")), jPanel3); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,7 +299,7 @@ public class Actualizaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

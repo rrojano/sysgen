@@ -4,6 +4,7 @@
  */
 package mx.uv.sysgen.Logica;
 
+import javax.swing.JLabel;
 import mx.uv.sysgen.Actualizaciones;
 
 
@@ -12,5 +13,8 @@ import mx.uv.sysgen.Actualizaciones;
  * @author Santiu
  */
 public class ModuloActualizaciones{
-    Actualizaciones ventana = new Actualizaciones();    
+    JLabel l;
+    Actualizaciones ventana = new Actualizaciones();
+    
+    
 }

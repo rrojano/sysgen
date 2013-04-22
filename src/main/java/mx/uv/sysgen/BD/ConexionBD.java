@@ -12,10 +12,7 @@ package mx.uv.sysgen.BD;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Driver;
-import java.util.LinkedList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-public class BD {
+public class ConexionBD {
 public String bd = "algo";//nombre_bd
 public String login = "root";//usuario
 public String password = "Gamblert77";//contrase√±a
@@ -24,9 +21,11 @@ public int manejador = 1; //MySQL
                       // = 2; //Oracle
                       // = 3; //el otro
 Connection conexion = null;
+public ConexionBD(){
+    
+}
 
-
-public void conectar(int i) {
+public Connection Conectar(int i) {
 
 try {
   manejador=i;
@@ -42,8 +41,8 @@ try {
   }
   
   if (conexion != null){
-      System.out.println("Conexi√≥n a base de datos "+url+" ... Ok");
-      mostrarMensaje("Conexi√≥n a base de datos "+url+" ... Ok");
+      System.out.println("ConexiÛn a base de datos "+url+" ... Ok");
+      mostrarMensaje("ConexiÛn a base de datos "+url+" ... Ok");
       //conexion.close();
       }
   }
@@ -55,6 +54,7 @@ try {
         System.out.println(ex);
         mostrarMensaje(ex.getMessage());
         }
+return conexion;
 }
 
 public void desconectar(){
@@ -78,8 +78,6 @@ public void insertar(String a) {
         }
 }
 
-
-
 public ResultSet consulta(String a){
      ResultSet rs = null;
      try
@@ -99,48 +97,6 @@ public ResultSet consulta(String a){
      }
      return rs;
 }
-
-public DefaultTableModel consultaAmodelo(String consulta){    
-    ResultSet rs=this.consulta(consulta);
-    DefaultTableModel modelo=new DefaultTableModel();
-    ConversorResultSetADefaultTableModel.rellena(rs, modelo);
-    return modelo;
-}
-
-
-public LinkedList<String> meteCampos(String tabla) throws SQLException{
-     ResultSet rs=this.consulta("select * from "+tabla);
-     rs.next();
-     System.out.println("select * from "+tabla);
-        
-     try{
-           ResultSetMetaData metaDatos = rs.getMetaData();
-           int numeroColumnas = metaDatos.getColumnCount();
-           LinkedList<String> etiquetas = new LinkedList<String> ();
-           for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(metaDatos.getColumnLabel(i + 1));
-               System.out.println(metaDatos.getColumnLabel(i + 1));
-           }
-           return etiquetas;
-     }catch (Exception e) {
-           e.printStackTrace();
-           return null;
-     }
-
-}    
-    
-public LinkedList <String> meteTablas() throws SQLException{
-     LinkedList<String> arr= new LinkedList<String>();
-    
-      DatabaseMetaData md = this.conexion.getMetaData();
-      ResultSet rs = md.getTables(null, null, "%", null);
-      
-      while (rs.next()) {
-            arr.add((rs.getString(3)));       
-      }
-      return arr;
- }
-
 public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(null, mensaje, "Advertencia",JOptionPane.WARNING_MESSAGE);
  }
