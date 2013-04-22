@@ -95,14 +95,14 @@ public void configuraBD(BD b){
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BTNbuscarSQL = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         JCBtabla = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         PNcampos = new javax.swing.JPanel();
-        BTNbuscar = new javax.swing.JButton();
+        BTNbuscarAPY = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTable2 = new javax.swing.JTable();
         BTNxml2 = new javax.swing.JButton();
@@ -122,11 +122,11 @@ public void configuraBD(BD b){
         jLabel2.setText("Manejador: ");
         jLabel2.setName("LBLmanejador"); // NOI18N
 
-        jButton1.setText("Buscar");
-        jButton1.setName("BTNbuscar"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BTNbuscarSQL.setText("Buscar");
+        BTNbuscarSQL.setName("BTNbuscar"); // NOI18N
+        BTNbuscarSQL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BTNbuscarSQLActionPerformed(evt);
             }
         });
 
@@ -151,7 +151,7 @@ public void configuraBD(BD b){
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1))
+                            .addComponent(BTNbuscarSQL))
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -168,7 +168,7 @@ public void configuraBD(BD b){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(BTNbuscarSQL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2))
         );
@@ -206,10 +206,10 @@ public void configuraBD(BD b){
             .addGap(0, 172, Short.MAX_VALUE)
         );
 
-        BTNbuscar.setText("Buscar");
-        BTNbuscar.addActionListener(new java.awt.event.ActionListener() {
+        BTNbuscarAPY.setText("Buscar");
+        BTNbuscarAPY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTNbuscarActionPerformed(evt);
+                BTNbuscarAPYActionPerformed(evt);
             }
         });
 
@@ -242,7 +242,7 @@ public void configuraBD(BD b){
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(BTNbuscar)
+                                .addComponent(BTNbuscarAPY)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -268,7 +268,7 @@ public void configuraBD(BD b){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTNbuscar))
+                    .addComponent(BTNbuscarAPY))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3))
         );
@@ -308,18 +308,18 @@ public void configuraBD(BD b){
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel modelo = new DefaultTableModel();
+    private void BTNbuscarSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarSQLActionPerformed
         BD base=new BD();
         configuraBD(base);
         ResultSet rs = base.consulta(this.jTextField1.getText());
 
         if (rs!=null){
             resultados= base.consulta(this.jTextField1.getText());    
+            DefaultTableModel modelo = new DefaultTableModel();
             modelo=base.consultaAmodelo(this.jTextField1.getText());
             this.JTable.setModel(modelo);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BTNbuscarSQLActionPerformed
 
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
        BD base=new BD();
@@ -359,7 +359,7 @@ public void configuraBD(BD b){
         //new JLabel(campos.get(i);
     }//GEN-LAST:event_JCBtablaActionPerformed
 
-    private void BTNbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarActionPerformed
+    private void BTNbuscarAPYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarAPYActionPerformed
         String cons="select * from "+tabla;
         boolean ban=false;
         boolean ini=false;
@@ -390,7 +390,7 @@ public void configuraBD(BD b){
             this.JTable2.setModel(modelo);
         }
         
-    }//GEN-LAST:event_BTNbuscarActionPerformed
+    }//GEN-LAST:event_BTNbuscarAPYActionPerformed
 
     private void BTNxml2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNxml2ActionPerformed
         // TODO add your handling code here:
@@ -441,13 +441,13 @@ public void configuraBD(BD b){
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BTNbuscar;
+    private javax.swing.JButton BTNbuscarAPY;
+    private javax.swing.JButton BTNbuscarSQL;
     private javax.swing.JButton BTNxml2;
     private javax.swing.JComboBox JCBtabla;
     private javax.swing.JTable JTable;
     private javax.swing.JTable JTable2;
     private javax.swing.JPanel PNcampos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
