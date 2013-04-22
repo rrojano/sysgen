@@ -35,47 +35,6 @@ public class FConsultas1 extends javax.swing.JFrame {
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
-
-public LinkedList<String> meteCampos(String tabla) throws SQLException{
-     BD base=new BD();
-     this.configuraBD(base);
-     ResultSet rs=base.consulta("select * from "+tabla);
-     rs.next();
-     System.out.println("select * from "+tabla);
-        
-     try{
-           ResultSetMetaData metaDatos = rs.getMetaData();
-           int numeroColumnas = metaDatos.getColumnCount();
-           LinkedList<String> etiquetas = new LinkedList<String> ();
-           for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(metaDatos.getColumnLabel(i + 1));
-               System.out.println(metaDatos.getColumnLabel(i + 1));
-           }
-           return etiquetas;
-     }catch (Exception e) {
-           e.printStackTrace();
-           return null;
-     }
-
-}    
-    
-public LinkedList <String> meteTablas(){
-     BD base=new BD();
-     configuraBD(base);
-     LinkedList<String> arr= new LinkedList<String>();
-    try {
-      DatabaseMetaData md = base.conexion.getMetaData();
-      ResultSet rs = md.getTables(null, null, "%", null);
-      
-      while (rs.next()) {
-            arr.add((rs.getString(3)));       
-      }
-      return arr;
-    } catch (SQLException ex) {
-        Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    return null;
- }
     
 public void tomaDatos(DefaultTableModel modelo,int i){
     if (i==1){
@@ -356,17 +315,24 @@ public void configuraBD(BD b){
         ResultSet rs = base.consulta(this.jTextField1.getText());
 
         if (rs!=null){
-            resultados= base.consulta(this.jTextField1.getText());
-            ConversorResultSetADefaultTableModel.rellena(rs, modelo);
-            tomaDatos(modelo,1);
+            resultados= base.consulta(this.jTextField1.getText());    
+            modelo=base.consultaAmodelo(this.jTextField1.getText());
+            this.JTable.setModel(modelo);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
-       LinkedList<String> a=this.meteTablas();
-        for (int i=0;i<a.size();i++){
-          JCBtabla.addItem(a.get(i));
-        }// TODO add your handling code here:        // TODO add your handling code here:
+       BD base=new BD();
+       configuraBD(base);
+        LinkedList<String> a;
+        try {
+            a = base.meteTablas();
+            for (int i=0;i<a.size();i++)
+             JCBtabla.addItem(a.get(i));
+        } catch (SQLException ex) {
+            Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2ComponentShown
 
     private void JCBtablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtablaActionPerformed
@@ -375,8 +341,10 @@ public void configuraBD(BD b){
         tabla=tab;
         letreros=new LinkedList <String>();
         campos=new LinkedList <JTextField>();
+        BD base=new BD();
+        configuraBD(base);
         try {
-            letreros=this.meteCampos(tab);
+            letreros=base.meteCampos(tab);
         } catch (SQLException ex) {
             Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -418,8 +386,8 @@ public void configuraBD(BD b){
 
         if (rs!=null){
             resultados= base.consulta(cons);
-            ConversorResultSetADefaultTableModel.rellena(rs, modelo);
-            tomaDatos(modelo,2);
+            modelo=base.consultaAmodelo(cons);
+            this.JTable2.setModel(modelo);
         }
         
     }//GEN-LAST:event_BTNbuscarActionPerformed
