@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -35,26 +36,14 @@ public class FConsultas1 extends javax.swing.JFrame {
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
-    
-public void tomaDatos(DefaultTableModel modelo,int i){
-    if (i==1){
-    if (this.JTable == null)
-        this.JTable = new JTable();
-        this.JTable.setModel(modelo);
-    }
-    else{
-        if (this.JTable2 == null)
-        this.JTable2 = new JTable();
-        this.JTable2.setModel(modelo);
-    }
-}
+  
 
 public void configuraBD(BD b){
     b.login=u;
     b.password=c;
     b.bd=e;
     b.url="jdbc:mysql://localhost/"+e;
-    b.conectar(1);
+    Connection c=b.conectar(1);
 }
 
     
@@ -144,23 +133,29 @@ public void configuraBD(BD b){
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(BTNbuscarSQL))
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BTNbuscarSQL))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(14, 14, 14)
@@ -203,7 +198,7 @@ public void configuraBD(BD b){
         );
         PNcamposLayout.setVerticalGroup(
             PNcamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 172, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         BTNbuscarAPY.setText("Buscar");
@@ -228,7 +223,7 @@ public void configuraBD(BD b){
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 254, Short.MAX_VALUE)
+                .addGap(0, 373, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -258,9 +253,9 @@ public void configuraBD(BD b){
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(PNcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -281,14 +276,13 @@ public void configuraBD(BD b){
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -329,6 +323,7 @@ public void configuraBD(BD b){
             a = base.getTablas();
             for (int i=0;i<a.size();i++)
              JCBtabla.addItem(a.get(i));
+                
         } catch (SQLException ex) {
             Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -362,17 +357,32 @@ public void configuraBD(BD b){
     private void BTNbuscarAPYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarAPYActionPerformed
         String cons="select * from "+tabla;
         boolean ban=false;
-        boolean ini=false;
+        boolean esCadena=false;
         int cont=0;
-        String extra="where ";
+        String extra=" where ";
         for (int i=0;i<letreros.size();i++){
-           if (campos.get(i).getText()!="" && !campos.get(i).getText().isEmpty()){
+           if (!campos.get(i).getText().isEmpty()){
                ban=true;  
                if (ban==true && cont>0){
                    extra=extra+" and ";
                    }
-               extra=" "+extra + letreros.get(i)+"="+campos.get(i).getText();
+               //esto es para revisar si el campo es númerico o no
+               //si sí unas '' lo envolveran
+               
+               extra=extra + letreros.get(i)+"=";
+               try{
+               int prueba=0;
+               prueba=Integer.parseInt(campos.get(i).getText());
+               }
+               catch(Exception e){
+                   esCadena=true;
+               }
+               if (esCadena)
+                   extra=extra+"\'"+campos.get(i).getText()+"\'";
+               else
+               extra=extra+campos.get(i).getText();
                cont=cont+1;
+               esCadena=false;
            }
         }
         if (ban!=false)

@@ -26,7 +26,7 @@ public int manejador = 1; //MySQL
 Connection conexion = null;
 
 //Conecta la base de datos, usen 1 porque ahora s髄o funciona SQL
-public void conectar(int i) {
+public Connection conectar(int i) {
 
 try {
   manejador=i;
@@ -42,8 +42,8 @@ try {
   }
   
   if (conexion != null){
-      System.out.println("Conexi贸n a base de datos "+url+" ... Ok");
-      mostrarMensaje("Conexi贸n a base de datos "+url+" ... Ok");
+      //System.out.println("Conexi贸n a base de datos "+url+" ... Ok");
+      //mostrarMensaje("Conexi贸n a base de datos "+url+" ... Ok");
       //conexion.close();
       }
   }
@@ -55,6 +55,7 @@ try {
         System.out.println(ex);
         mostrarMensaje(ex.getMessage());
         }
+return conexion;
 }
 //Cierra la conexi髇, cuando cierren su ventana llamen a este m閠odo
 public void desconectar(){
