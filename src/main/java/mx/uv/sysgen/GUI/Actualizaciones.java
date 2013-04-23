@@ -2,7 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.uv.sysgen;
+package mx.uv.sysgen.GUI;
+
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,6 +21,16 @@ public class Actualizaciones extends javax.swing.JFrame {
      */
     public Actualizaciones() {
         initComponents();
+    }    
+    
+    private void DibujaCampos(LinkedList<String> campos){
+        System.err.println(campos.size());
+        for(int i=0; i < campos.size(); i++){            
+            panelDatos.add(new JLabel(campos.get(i)));
+            panelDatos.add(new JTextField()); 
+            panelDatos.setLayout(new GridLayout(campos.size(), 1, 0,0));
+            panelDatos.updateUI();
+        }
     }
 
     /**
@@ -30,14 +46,9 @@ public class Actualizaciones extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        panelDatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -67,21 +78,11 @@ public class Actualizaciones extends javax.swing.JFrame {
         jLabel1.setText("Tabla");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel2.setText("Campo1:");
-
-        jTextField1.setText("Campo1");
-
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel3.setText("Campo2:");
-
-        jTextField2.setText("Campo2");
-
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jLabel4.setText("CampoN:");
-
-        jTextField3.setText("CampoN");
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton1.setText("Agregar");
@@ -89,29 +90,40 @@ public class Actualizaciones extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton2.setText("Cancelar");
 
+        panelDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 0, 12))); // NOI18N
+
+        javax.swing.GroupLayout panelDatosLayout = new javax.swing.GroupLayout(panelDatos);
+        panelDatos.setLayout(panelDatosLayout);
+        panelDatosLayout.setHorizontalGroup(
+            panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelDatosLayout.setVerticalGroup(
+            panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jTextField1)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)))
-                .addContainerGap(214, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(97, 97, 97)
+                            .addComponent(jButton1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton2))))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,26 +132,16 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(panelDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Altas", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_altas.gif")), jPanel1); // NOI18N
+        jTabbedPane1.addTab("Altas", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_altas.gif")), jPanel1); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel5.setText("Tabla:");
@@ -220,10 +222,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton3))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Bajas", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_bajas.gif")), jPanel2); // NOI18N
+        jTabbedPane1.addTab("Bajas", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_bajas.gif")), jPanel2); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel7.setText("Tabla:");
@@ -288,10 +290,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Cambios", new javax.swing.ImageIcon(getClass().getResource("/rsc/icono_modificaciones.gif")), jPanel3); // NOI18N
+        jTabbedPane1.addTab("Cambios", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_modificaciones.gif")), jPanel3); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,19 +301,42 @@ public class Actualizaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if (evt.getSource()==jComboBox1){
+        if (jComboBox1.getSelectedIndex()==1){    
+        LinkedList<String> c=new LinkedList<String>();
+        c.add("campo1");
+        c.add("paola");
+        c.add("mara");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        c.add("salvatrucha");
+        
+        DibujaCampos(c);
+        }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,9 +383,6 @@ public class Actualizaciones extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -373,8 +395,6 @@ public class Actualizaciones extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPanel panelDatos;
     // End of variables declaration//GEN-END:variables
 }
