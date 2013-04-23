@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import mx.uv.sysgen.Logica.Alta;
 
 /**
  *
@@ -21,10 +22,11 @@ public class Actualizaciones extends javax.swing.JFrame {
      */
     public Actualizaciones() {
         initComponents();
+        obtenerTablas();
     }    
     
     private void DibujaCampos(LinkedList<String> campos){
-        System.err.println(campos.size());
+        panelDatos.removeAll();
         for(int i=0; i < campos.size(); i++){            
             panelDatos.add(new JLabel(campos.get(i)));
             panelDatos.add(new JTextField()); 
@@ -33,6 +35,14 @@ public class Actualizaciones extends javax.swing.JFrame {
         }
     }
 
+    private void obtenerTablas(){
+        jComboBox1.removeAllItems();
+        LinkedList<String> tablas = new LinkedList<String>();
+        tablas=logica_alta.getTablas();
+        for(String l : tablas){
+            jComboBox1.addItem(l);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -318,23 +328,11 @@ public class Actualizaciones extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         if (evt.getSource()==jComboBox1){
-        if (jComboBox1.getSelectedIndex()==1){    
-        LinkedList<String> c=new LinkedList<String>();
-        c.add("campo1");
-        c.add("paola");
-        c.add("mara");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        c.add("salvatrucha");
-        
+        //falta funcion para recuperar datos de la tabla seleccionada
+        LinkedList<String> c;        
+        c= logica_alta.getCampos("mysql");
         DibujaCampos(c);
-        }
+        
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -372,6 +370,7 @@ public class Actualizaciones extends javax.swing.JFrame {
             }
         });
     }
+    private Alta logica_alta=new Alta();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

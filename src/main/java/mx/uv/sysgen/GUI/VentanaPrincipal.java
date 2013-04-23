@@ -116,7 +116,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        
  /* ----------------------------- AGREGAMOS LOS MENUS A LA BARRA DE MENUS -------------------*/
        
-        barra.add(menu_archivo);
+        barra.add(menu_archivo);                
         barra.add( menu_catalogos);
         barra.add(menu_plantillas);
         barra.add( menu_reportes);
