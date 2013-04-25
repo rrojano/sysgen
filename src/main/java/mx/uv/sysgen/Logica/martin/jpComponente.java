@@ -1,4 +1,9 @@
-package mx.uv.sysgen.Logica.martin;
+
+
+import java.awt.Color;
+import java.awt.Container;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /*
  * To change this template, choose Tools | Templates
@@ -10,15 +15,43 @@ package mx.uv.sysgen.Logica.martin;
  * @author GON
  */
 public class jpComponente extends javax.swing.JPanel {
-
+private String nombre;
+private int index; 
+private boolean flag=false;
     /**
      * Creates new form jpComponente
      */
-    public jpComponente(int index) {
+    public jpComponente(int indx) {
         initComponents();
+        this.index=indx;
+        setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        this.setSize(230, 30);
         this.setVisible(true);
+        this.jCheckBox1.setActionCommand("key_"+index);
+        this.nombre="comp"+index;
+        
+            
+        //("key_"+index)
+        //this.jButton1.setActionCommand("key_"+index); 
     }
 
+public void setNombre(){}
+
+
+public String getNombre(){
+return this.nombre;} 
+
+public void setChbxoff(){
+this.jCheckBox1.setEnabled(false);
+}
+public void setChbxon(){
+this.jCheckBox1.setEnabled(true);
+}
+public int getIndex(){
+return this.index;} 
+
+public boolean getFlag(){
+return this.flag;}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,74 +61,118 @@ public class jpComponente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-
-        jRadioButton1.setText("jRadioButton1");
-
-        jToggleButton1.setText("jToggleButton1");
+        cerrar = new javax.swing.JLabel();
 
         jLabel1.setText("Nombre (ID):");
 
         jCheckBox1.setText("Llave");
-
-        jButton1.setText("x");
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox1ItemStateChanged(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entero", "Cadena", "Decimal" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel2.setText("Tipo del campo:");
+
+        cerrar.setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
+        cerrar.setForeground(java.awt.Color.gray);
+        cerrar.setText("X");
+        cerrar.setToolTipText("Cerrar");
+        cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cerrarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jCheckBox1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cerrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cerrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
+        Container parent = this.getParent();
+        this.setVisible(false);
+        parent.remove(this);
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cerrarMouseClicked
+
+    private void cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseEntered
+        this.cerrar.setForeground(Color.white);
+        this.cerrar.setBackground(Color.DARK_GRAY);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cerrarMouseEntered
+
+    private void cerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseExited
+       this.cerrar.setForeground(Color.GRAY);
+      
+    }//GEN-LAST:event_cerrarMouseExited
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        System.out.print("ok");
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+      
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    public javax.swing.JLabel cerrar;
+    public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JRadioButton jRadioButton1;
     public javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
