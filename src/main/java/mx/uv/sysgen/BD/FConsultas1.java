@@ -33,23 +33,19 @@ public class FConsultas1 extends javax.swing.JFrame {
     String u;
     String c;
     String e;
+    String m;
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
   
 
-public void configuraBD(BD b){
-    b.login=u;
-    b.password=c;
-    b.bd=e;
-    b.url="jdbc:mysql://localhost/"+e;
-    Connection c=b.conectar(1);
-}
+
 
     
     
     /**
      * Creates new form FConsultas
+     * 
      */
     public FConsultas1() {
         initComponents();
@@ -59,10 +55,14 @@ public void configuraBD(BD b){
                        c=conf.TFcontraseña.getText();
                        u=conf.TFusuario.getText();
                        e=conf. TFesquema.getText();
+                       m=(String) conf.JCBmanej.getSelectedItem();
+                       //mostrar qué manejador se está usando, en la ventana
+                       LBLmanejador.setText("Manejador: "+m);
+                       LBLmanejador2.setText("Manejador: "+m);
                        conf.dispose();
-                       
-            }
+                     }
         });
+        
         conf.setVisible(true);
         conf.setAlwaysOnTop(true);
     }
@@ -83,12 +83,12 @@ public void configuraBD(BD b){
         JTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        LBLmanejador = new javax.swing.JLabel();
         BTNbuscarSQL = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         JCBtabla = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
+        LBLmanejador2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         PNcampos = new javax.swing.JPanel();
         BTNbuscarAPY = new javax.swing.JButton();
@@ -108,8 +108,8 @@ public void configuraBD(BD b){
         jTextField1.setToolTipText("Escriba la consulta que será realizada por el manejador de base de datos preseleccionado");
         jTextField1.setName("TFconsulta"); // NOI18N
 
-        jLabel2.setText("Manejador: ");
-        jLabel2.setName("LBLmanejador"); // NOI18N
+        LBLmanejador.setText("Manejador: ");
+        LBLmanejador.setName("LBLmanejador"); // NOI18N
 
         BTNbuscarSQL.setText("Buscar");
         BTNbuscarSQL.setName("BTNbuscar"); // NOI18N
@@ -146,7 +146,7 @@ public void configuraBD(BD b){
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LBLmanejador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32))
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
@@ -165,7 +165,7 @@ public void configuraBD(BD b){
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTNbuscarSQL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2))
+                .addComponent(LBLmanejador))
         );
 
         jTabbedPane1.addTab("Consulta SQL", jPanel1);
@@ -183,8 +183,8 @@ public void configuraBD(BD b){
             }
         });
 
-        jLabel3.setText("Manejador: ");
-        jLabel3.setName("LBLmanejador"); // NOI18N
+        LBLmanejador2.setText("Manejador: ");
+        LBLmanejador2.setName("LBLmanejador"); // NOI18N
 
         jLabel4.setText("Tabla");
 
@@ -224,7 +224,7 @@ public void configuraBD(BD b){
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 373, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(LBLmanejador2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +265,7 @@ public void configuraBD(BD b){
                     .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTNbuscarAPY))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3))
+                .addComponent(LBLmanejador2))
         );
 
         jTabbedPane1.addTab("Consulta Apoyada", jPanel2);
@@ -289,6 +289,10 @@ public void configuraBD(BD b){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt evento de clic en el botón XML
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (resultados!=null){
@@ -304,7 +308,7 @@ public void configuraBD(BD b){
 
     private void BTNbuscarSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarSQLActionPerformed
         BD base=new BD();
-        configuraBD(base);
+        base.configuraBD(u,c,e,m);
         ResultSet rs = base.consulta(this.jTextField1.getText());
 
         if (rs!=null){
@@ -314,10 +318,13 @@ public void configuraBD(BD b){
             this.JTable.setModel(modelo);
         }
     }//GEN-LAST:event_BTNbuscarSQLActionPerformed
-
+    /**
+     * 
+     * @param evt evento mostrado de jPanel2
+     */
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
        BD base=new BD();
-       configuraBD(base);
+       base.configuraBD(u,c,e,m);
         LinkedList<String> a;
         try {
             a = base.getTablas();
@@ -330,6 +337,10 @@ public void configuraBD(BD b){
         // TODO add your handling code here:        // TODO add your handling code here:
     }//GEN-LAST:event_jPanel2ComponentShown
 
+    /**
+     * 
+     * @param evt  evento acción en el JCBtabla
+     */
     private void JCBtablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtablaActionPerformed
         String tab=(String) JCBtabla.getSelectedItem();
         System.out.println(tab);
@@ -337,7 +348,7 @@ public void configuraBD(BD b){
         letreros=new LinkedList <String>();
         campos=new LinkedList <JTextField>();
         BD base=new BD();
-        configuraBD(base);
+        base.configuraBD(u,c,e,m);
         try {
             letreros=base.getCampos(tab);
         } catch (SQLException ex) {
@@ -354,6 +365,10 @@ public void configuraBD(BD b){
         //new JLabel(campos.get(i);
     }//GEN-LAST:event_JCBtablaActionPerformed
 
+    /**
+     * 
+     * @param evt clic en el botón buscar de consulta apoyada
+     */
     private void BTNbuscarAPYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarAPYActionPerformed
         String cons="select * from "+tabla;
         boolean ban=false;
@@ -391,7 +406,7 @@ public void configuraBD(BD b){
         //-------------------------------------------------------------------
         DefaultTableModel modelo = new DefaultTableModel();
         BD base=new BD();
-        configuraBD(base);
+        base.configuraBD(u,c,e,m);
         ResultSet rs = base.consulta(cons);
 
         if (rs!=null){
@@ -402,6 +417,9 @@ public void configuraBD(BD b){
         
     }//GEN-LAST:event_BTNbuscarAPYActionPerformed
 
+    /*
+     * clic en el boton xml de consulta apoyada
+     */
     private void BTNxml2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNxml2ActionPerformed
         // TODO add your handling code here:
         if (resultados!=null){
@@ -457,12 +475,12 @@ public void configuraBD(BD b){
     private javax.swing.JComboBox JCBtabla;
     private javax.swing.JTable JTable;
     private javax.swing.JTable JTable2;
+    private javax.swing.JLabel LBLmanejador;
+    private javax.swing.JLabel LBLmanejador2;
     private javax.swing.JPanel PNcampos;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

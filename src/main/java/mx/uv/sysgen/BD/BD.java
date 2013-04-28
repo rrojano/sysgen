@@ -26,6 +26,11 @@ public int manejador = 1; //MySQL
 Connection conexion = null;
 
 //Conecta la base de datos, usen 1 porque ahora sólo funciona SQL
+/**
+ * 
+ * @param i indica qué manejador se usará, 1=MySQL, 2=Oracle, 3=Otro 
+ * @return regresa la conexion
+ */
 public Connection conectar(int i) {
 
 try {
@@ -58,6 +63,7 @@ try {
 return conexion;
 }
 //Cierra la conexión, cuando cierren su ventana llamen a este método
+
 public void desconectar(){
     try
     {
@@ -67,7 +73,24 @@ public void desconectar(){
     	mostrarMensaje("error al cerrar la conexiÃ³n");
     }
 }
+/**
+ * 
+ * @param u usuario
+ * @param c contraseña
+ * @param e esquema
+ */
+public void configuraBD(String u, String c, String e, String m){
+    login=u;
+    password=c;
+    bd=e;
+    url="jdbc:mysql://localhost/"+e;
+    conectar(this.getNombreManejador(m));
+}
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
+/**
+ * 
+ * @param a sentencia sql, un insert, update o delete
+ */
 public void insertar(String a) {
       try {
         Statement s = this.conexion.createStatement();
@@ -81,6 +104,11 @@ public void insertar(String a) {
 
 
 //hace una consulta a partir de una cadena y la devuelve a un ResultSet
+/**
+ * 
+ * @param a consulta en lenguaje sql ej: "select * from tabla where id=1"
+ * @return una tabla de resultados, este objeto contiene todas las tuplas encontradas a partir de la consulta
+ */
 public ResultSet consulta(String a){
      ResultSet rs = null;
      try
@@ -107,6 +135,11 @@ public ResultSet consulta(String a){
 //.....código de la tabla
 // DefaultTableModel modelo=consultaAmodelo(consulta);
 // miTabla.setModel(modelo);
+/**
+ * 
+ * @param consulta Objeto String que contiene una consulta SQL
+ * @return  Un modelo de datos de tabla, que se asignará a una tabla
+ */
 public DefaultTableModel consultaAmodelo(String consulta){    
     ResultSet rs=this.consulta(consulta);
     DefaultTableModel modelo=new DefaultTableModel();
@@ -115,6 +148,12 @@ public DefaultTableModel consultaAmodelo(String consulta){
 }
 
 //regresa los campos de una tabla en una lista ligada
+/**
+ * 
+ * @param tabla String que contiene el nombre de la tabla
+ * @return una lista ligada que contiene Strings de los campos existentes en una tabla
+ * @throws SQLException error en la conexión
+ */
 public LinkedList<String> getCampos(String tabla) throws SQLException{
      ResultSet rs=this.consulta("select * from "+tabla);
      rs.next();
@@ -136,6 +175,12 @@ public LinkedList<String> getCampos(String tabla) throws SQLException{
 
 }    
 //regresa las tablas de un esquema o BD, en el que se hizo la conexión    
+/**
+ * 
+ * @return una lista ligada que contiene Strings de las tablas existentes en un esquema o base
+ * de datos
+ * @throws SQLException  error con la conexion
+ */
 public LinkedList <String> getTablas() throws SQLException{
      LinkedList<String> arr= new LinkedList<String>();
     
@@ -147,8 +192,44 @@ public LinkedList <String> getTablas() throws SQLException{
       }
       return arr;
  }
-
+/**
+ * 
+ * @param mensaje String que se mostrará en el mensaje
+ */
 public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(null, mensaje, "Advertencia",JOptionPane.WARNING_MESSAGE);
  }
+
+public int getNombreManejador(String man) {
+    if (man.equals("MySQL"))   
+        return 1;
+    else if (man.equals("Oracle"))   
+             return 2;
+         else
+             return 3;
+    }
+
+public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
+   String sentencia="create table "+nombre+" ";
+   for (int i=0;i<campos.size();i++){
+       
+   } 
+   
+}
+//después se evaluará si los tipos son correctos y se devolverán
+public class CampoSQL{
+    String campo;
+    String tipo="varchar(20)";
+    boolean llavePrim=false;
+    boolean nulleable=false;
+    
+    
+    
+    public CampoSQL(String c, String t,boolean prim){
+        campo=c;
+        tipo=t;
+        llavePrim=prim;
+    }
+}
+
 }
