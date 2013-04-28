@@ -13,6 +13,8 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Driver;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 public class BD {
@@ -210,26 +212,29 @@ public int getNombreManejador(String man) {
     }
 
 public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
-   String sentencia="create table "+nombre+" ";
-   for (int i=0;i<campos.size();i++){
-       
+   String sentencia="create table "+nombre+" (";
+   for (int i=0;i<campos.size();i++){         
+       sentencia=sentencia+campos.get(i).campo+" "+campos.get(i).tipo;
+       if (campos.get(i).llavePrim==true)
+           sentencia=sentencia +" primary key ";
+       if (campos.get(i).nulleable==true)
+           sentencia=sentencia +" not null ";
+       if(i<campos.size()-1)
+           sentencia=sentencia+",";
    } 
+   sentencia=sentencia+")";
+   System.out.println(sentencia);
+    try {
+        System.out.println("---------------------------------");
+        Statement st = conexion.createStatement();
+        st.executeUpdate(sentencia);
+        System.out.println("salió bien");
+    } catch (SQLException ex) {
+        Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+    }
    
 }
 //después se evaluará si los tipos son correctos y se devolverán
-public class CampoSQL{
-    String campo;
-    String tipo="varchar(20)";
-    boolean llavePrim=false;
-    boolean nulleable=false;
-    
-    
-    
-    public CampoSQL(String c, String t,boolean prim){
-        campo=c;
-        tipo=t;
-        llavePrim=prim;
-    }
-}
+
 
 }
