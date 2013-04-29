@@ -79,7 +79,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         op_actualizarCatalogos.setAccelerator(KeyStroke.getKeyStroke('C',java.awt.event.InputEvent.ALT_MASK));
         op_actualizarCatalogos.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {               
-             
+                Actualizaciones ventanaAct= new Actualizaciones();
+                ventanaAct.setVisible(true);
                                        
             }
         });

@@ -37,8 +37,8 @@ public class Actualizaciones extends javax.swing.JFrame {
 
     private void obtenerTablas(){
         jComboBox1.removeAllItems();
-        LinkedList<String> tablas = new LinkedList<String>();
-        tablas=logica_alta.getTablas();
+        LinkedList<String> tablas;
+        tablas=logica_alta.getTablas();       
         for(String l : tablas){
             jComboBox1.addItem(l);
         }
@@ -76,7 +76,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gensys: Actualizaciones");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -318,7 +318,7 @@ public class Actualizaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -329,8 +329,14 @@ public class Actualizaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getSource()==jComboBox1){
         //falta funcion para recuperar datos de la tabla seleccionada
-        LinkedList<String> c;        
-        c= logica_alta.getCampos("mysql");
+        LinkedList<String> c;
+        c= new LinkedList<String>();
+        c.add("campo1");
+        c.add("campo2");
+        c.add("campo3");
+        c.add("campo4");
+        c.add("campo5");
+        c= logica_alta.getCampos("mysql");       
         DibujaCampos(c);
         
         }

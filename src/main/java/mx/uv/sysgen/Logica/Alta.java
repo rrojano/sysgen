@@ -25,35 +25,37 @@ public class Alta {
     
     
     //** Constructor; agrego campos ficticios para que despliegue algo en pantalla **//
+    //----------------------CONSTRUCTOR------------------//
+    
     public Alta(){
         bdmanager= new BD();
+        bdmanager.configuraBD("root", "123", "taller2", "mysql");
         bdmanager.conectar(1);//
-        campos = new LinkedList<String>();
-        campos.add("Campo1");
-        campos.add("Campo2");
-        campos.add("Campo3");
-        campos.add("Campo4");
-        campos.add("Campo5");
-        campos.add("Campo6");
-                
+        campos = new LinkedList<String>();                    
     }
     
     //** Agrega los campos de los componentes a la tabla especificada **//
+    // ---------------AGREGAR-------------------------------------//
+    
     public void Agregar(LinkedList<String> campos, String tabla){
         
         bdmanager.consulta(tabla);
     }
     
     //**regresa las tablas de la bd**//
+    //----------OBTENER TABLAS-------------------//
+    
     public LinkedList<String> getTablas(){
         //obtener tablas con BD
+        
         LinkedList<String> n = new LinkedList<String>();
+        
         try {
             n = bdmanager.getTablas();
         } catch (SQLException ex) {
             Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        /*n.add("Tabla1");
+        }/*
+        n.add("Tabla1");
         n.add("Tabla2");
         n.add("Tabla3");
         n.add("Tabla4");
@@ -65,11 +67,11 @@ public class Alta {
     
     //** Obtiene los campos de una tabla usando la clase BD **//
     public LinkedList<String> getCampos(String tabla){
-        /*try{
+        try{
             campos = bdmanager.getCampos(tabla);
         }catch (SQLException ex) {
             Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         return campos;
     }
 }
