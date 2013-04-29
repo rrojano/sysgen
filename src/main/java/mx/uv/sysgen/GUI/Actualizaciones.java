@@ -23,6 +23,7 @@ public class Actualizaciones extends javax.swing.JFrame {
     public Actualizaciones() {
         initComponents();
         obtenerTablas();
+        jComboBox1.setSelectedItem(null);
     }    
     
     private void DibujaCampos(LinkedList<String> campos){
@@ -330,14 +331,10 @@ public class Actualizaciones extends javax.swing.JFrame {
         if (evt.getSource()==jComboBox1){
         //falta funcion para recuperar datos de la tabla seleccionada
         LinkedList<String> c;
-        c= new LinkedList<String>();
-        c.add("campo1");
-        c.add("campo2");
-        c.add("campo3");
-        c.add("campo4");
-        c.add("campo5");
-        c= logica_alta.getCampos("mysql");       
+        if(jComboBox1.getSelectedItem()!= null){
+        c= logica_alta.getCampos(jComboBox1.getSelectedItem().toString());       
         DibujaCampos(c);
+        }
         
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

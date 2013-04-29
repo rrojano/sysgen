@@ -17,7 +17,7 @@ import mx.uv.sysgen.BD.FConsultas1;
  * @author Santi
  */
 
-//** modulo lógico de altas **//
+/** modulo lógico de altas **/
 
 public class Alta {
     LinkedList<String> campos;
@@ -29,16 +29,19 @@ public class Alta {
     
     public Alta(){
         bdmanager= new BD();
-        bdmanager.configuraBD("root", "123", "taller2", "mysql");
+        bdmanager.configuraBD("root", "123", "taller2", 1);
         bdmanager.conectar(1);//
         campos = new LinkedList<String>();                    
     }
     
     //** Agrega los campos de los componentes a la tabla especificada **//
     // ---------------AGREGAR-------------------------------------//
-    
-    public void Agregar(LinkedList<String> campos, String tabla){
-        
+/**
+ * 
+ * @param campos 
+ * @param tabla 
+ */    
+    public void Agregar(LinkedList<String> campos, String tabla){        
         bdmanager.consulta(tabla);
     }
     
@@ -46,10 +49,8 @@ public class Alta {
     //----------OBTENER TABLAS-------------------//
     
     public LinkedList<String> getTablas(){
-        //obtener tablas con BD
-        
-        LinkedList<String> n = new LinkedList<String>();
-        
+        //obtener tablas con BD        
+        LinkedList<String> n = new LinkedList<String>();        
         try {
             n = bdmanager.getTablas();
         } catch (SQLException ex) {
