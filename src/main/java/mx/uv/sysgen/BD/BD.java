@@ -13,6 +13,8 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import java.sql.Driver;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 public class BD {
@@ -79,12 +81,12 @@ public void desconectar(){
  * @param c contraseña
  * @param e esquema
  */
-public void configuraBD(String u, String c, String e, String m){
+public void configuraBD(String u, String c, String e, int m){
     login=u;
     password=c;
     bd=e;
     url="jdbc:mysql://localhost/"+e;
-    conectar(this.getNombreManejador(m));
+    conectar(m);
 }
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 /**
@@ -200,36 +202,40 @@ public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(null, mensaje, "Advertencia",JOptionPane.WARNING_MESSAGE);
  }
 
-public int getNombreManejador(String man) {
-    if (man.equals("MySQL"))   
-        return 1;
-    else if (man.equals("Oracle"))   
-             return 2;
-         else
-             return 3;
-    }
 
+/**
+ * 
+ * @param nombre nombre de la tabla
+ * @param campos lista ligada de objetos CampoSQL
+ */
 public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
-   String sentencia="create table "+nombre+" ";
-   for (int i=0;i<campos.size();i++){
-       
+   String sentencia="create table "+nombre+" (";
+   for (int i=0;i<campos.size();i++){         
+       sentencia=sentencia+campos.get(i).campo+" "+campos.get(i).tipo;
+       if (campos.get(i).llavePrim==true)
+           sentencia=sentencia +" primary key ";
+       if (campos.get(i).nulleable==true)
+           sentencia=sentencia +" not null ";
+       if(i<campos.size()-1)
+           sentencia=sentencia+",";
    } 
+   sentencia=sentencia+")";
+   System.out.println(sentencia); 
+    try {
+        System.out.println("---------------------------------");
+        Statement st = conexion.createStatement();
+        st.executeUpdate(sentencia);
+        System.out.println("salió bien");
+    } catch (SQLException ex) {
+        Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+    }
    
 }
+/*
+public void llaveForanea(String uno,String dos,String camp){
+    String sentencia="alter table "+uno+" add constraint fk_"+dos" foreign key ";
+}*/
 //después se evaluará si los tipos son correctos y se devolverán
-public class CampoSQL{
-    String campo;
-    String tipo="varchar(20)";
-    boolean llavePrim=false;
-    boolean nulleable=false;
-    
-    
-    
-    public CampoSQL(String c, String t,boolean prim){
-        campo=c;
-        tipo=t;
-        llavePrim=prim;
-    }
-}
+
 
 }

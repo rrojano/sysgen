@@ -33,7 +33,7 @@ public class FConsultas1 extends javax.swing.JFrame {
     String u;
     String c;
     String e;
-    String m;
+    int m;
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
@@ -55,7 +55,13 @@ public class FConsultas1 extends javax.swing.JFrame {
                        c=conf.TFcontraseña.getText();
                        u=conf.TFusuario.getText();
                        e=conf. TFesquema.getText();
-                       m=(String) conf.JCBmanej.getSelectedItem();
+                       String man=(String) conf.JCBmanej.getSelectedItem();
+                       if (man.equals("MySQL"))   
+                           m=1;
+                       else if (man.equals("Oracle"))   
+                           m=2;
+                       else
+                           m=3;
                        //mostrar qué manejador se está usando, en la ventana
                        LBLmanejador.setText("Manejador: "+m);
                        LBLmanejador2.setText("Manejador: "+m);
@@ -95,6 +101,7 @@ public class FConsultas1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         JTable2 = new javax.swing.JTable();
         BTNxml2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -177,6 +184,11 @@ public class FConsultas1 extends javax.swing.JFrame {
         });
 
         JCBtabla.setModel(new javax.swing.DefaultComboBoxModel());
+        JCBtabla.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JCBtablaItemStateChanged(evt);
+            }
+        });
         JCBtabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBtablaActionPerformed(evt);
@@ -218,6 +230,13 @@ public class FConsultas1 extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -229,22 +248,22 @@ public class FConsultas1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(PNcampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(PNcampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(BTNbuscarAPY)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BTNbuscarAPY))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(91, 91, 91)
                         .addComponent(BTNxml2)
-                        .addGap(24, 24, 24))))
+                        .addGap(8, 8, 8)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,20 +271,26 @@ public class FConsultas1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BTNbuscarAPY))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LBLmanejador2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(PNcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BTNxml2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTNbuscarAPY))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LBLmanejador2))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTNxml2)
+                                    .addComponent(jLabel4))))
+                        .addGap(32, 32, 32))))
         );
 
         jTabbedPane1.addTab("Consulta Apoyada", jPanel2);
@@ -323,18 +348,7 @@ public class FConsultas1 extends javax.swing.JFrame {
      * @param evt evento mostrado de jPanel2
      */
     private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
-       BD base=new BD();
-       base.configuraBD(u,c,e,m);
-        LinkedList<String> a;
-        try {
-            a = base.getTablas();
-            for (int i=0;i<a.size();i++)
-             JCBtabla.addItem(a.get(i));
-                
-        } catch (SQLException ex) {
-            Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // TODO add your handling code here:        // TODO add your handling code here:
+       recargaTablas();
     }//GEN-LAST:event_jPanel2ComponentShown
 
     /**
@@ -342,6 +356,8 @@ public class FConsultas1 extends javax.swing.JFrame {
      * @param evt  evento acción en el JCBtabla
      */
     private void JCBtablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBtablaActionPerformed
+        //recargaTablas();
+     if (JCBtabla.getItemCount()>0){   
         String tab=(String) JCBtabla.getSelectedItem();
         System.out.println(tab);
         tabla=tab;
@@ -362,6 +378,7 @@ public class FConsultas1 extends javax.swing.JFrame {
         }
         PNcampos.setLayout(new GridLayout(campos.size(), 2, 0, 0));
         PNcampos.updateUI();    
+     }
         //new JLabel(campos.get(i);
     }//GEN-LAST:event_JCBtablaActionPerformed
 
@@ -433,6 +450,21 @@ public class FConsultas1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BTNxml2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BD base=new BD();
+        base.configuraBD(u,c,e,m);
+        LinkedList<CampoSQL> a=new LinkedList<CampoSQL>();
+        a.add(new CampoSQL("id","varchar(25)",true,false));
+        a.add(new CampoSQL("tres","varchar(25)",false,false));
+        a.add(new CampoSQL("three","varchar(25)",false,true));
+        a.add(new CampoSQL("trois","varchar(25)",false,false));
+        base.crearTabla("tres", a);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JCBtablaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCBtablaItemStateChanged
+       
+    }//GEN-LAST:event_JCBtablaItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +510,7 @@ public class FConsultas1 extends javax.swing.JFrame {
     private javax.swing.JLabel LBLmanejador;
     private javax.swing.JLabel LBLmanejador2;
     private javax.swing.JPanel PNcampos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -489,4 +522,19 @@ public class FConsultas1 extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private void recargaTablas() {
+        JCBtabla.removeAllItems();
+        BD base=new BD();
+       base.configuraBD(u,c,e,m);
+        LinkedList<String> a;
+        try {
+            a = base.getTablas();
+            for (int i=0;i<a.size();i++)
+             JCBtabla.addItem(a.get(i));
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(FConsultas1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -12,6 +12,7 @@ public class FconfBDtemporal extends javax.swing.JFrame {
 String usuario="root";
 String contraseña="";
 String esquema="";
+
     /**
      * Creates new form FconfBDtemporal
      */
