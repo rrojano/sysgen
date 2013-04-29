@@ -210,7 +210,11 @@ public int getNombreManejador(String man) {
          else
              return 3;
     }
-
+/**
+ * 
+ * @param nombre nombre de la tabla
+ * @param campos lista ligada de objetos CampoSQL
+ */
 public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
    String sentencia="create table "+nombre+" (";
    for (int i=0;i<campos.size();i++){         
@@ -223,7 +227,7 @@ public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
            sentencia=sentencia+",";
    } 
    sentencia=sentencia+")";
-   System.out.println(sentencia);
+   System.out.println(sentencia); 
     try {
         System.out.println("---------------------------------");
         Statement st = conexion.createStatement();
