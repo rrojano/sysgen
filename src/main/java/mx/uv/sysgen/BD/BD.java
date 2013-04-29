@@ -81,12 +81,12 @@ public void desconectar(){
  * @param c contraseña
  * @param e esquema
  */
-public void configuraBD(String u, String c, String e, String m){
+public void configuraBD(String u, String c, String e, int m){
     login=u;
     password=c;
     bd=e;
     url="jdbc:mysql://localhost/"+e;
-    conectar(this.getNombreManejador(m));
+    conectar(m);
 }
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 /**
@@ -202,14 +202,7 @@ public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(null, mensaje, "Advertencia",JOptionPane.WARNING_MESSAGE);
  }
 
-public int getNombreManejador(String man) {
-    if (man.equals("MySQL"))   
-        return 1;
-    else if (man.equals("Oracle"))   
-             return 2;
-         else
-             return 3;
-    }
+
 /**
  * 
  * @param nombre nombre de la tabla
@@ -238,6 +231,10 @@ public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
     }
    
 }
+/*
+public void llaveForanea(String uno,String dos,String camp){
+    String sentencia="alter table "+uno+" add constraint fk_"+dos" foreign key ";
+}*/
 //después se evaluará si los tipos son correctos y se devolverán
 
 

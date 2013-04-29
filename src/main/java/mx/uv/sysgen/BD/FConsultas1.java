@@ -33,7 +33,7 @@ public class FConsultas1 extends javax.swing.JFrame {
     String u;
     String c;
     String e;
-    String m;
+    int m;
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
@@ -55,7 +55,13 @@ public class FConsultas1 extends javax.swing.JFrame {
                        c=conf.TFcontraseña.getText();
                        u=conf.TFusuario.getText();
                        e=conf. TFesquema.getText();
-                       m=(String) conf.JCBmanej.getSelectedItem();
+                       String man=(String) conf.JCBmanej.getSelectedItem();
+                       if (man.equals("MySQL"))   
+                           m=1;
+                       else if (man.equals("Oracle"))   
+                           m=2;
+                       else
+                           m=3;
                        //mostrar qué manejador se está usando, en la ventana
                        LBLmanejador.setText("Manejador: "+m);
                        LBLmanejador2.setText("Manejador: "+m);
@@ -254,9 +260,9 @@ public class FConsultas1 extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(85, 85, 85)
+                        .addGap(91, 91, 91)
                         .addComponent(BTNxml2)
-                        .addGap(14, 14, 14)))
+                        .addGap(8, 8, 8)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -266,8 +272,6 @@ public class FConsultas1 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BTNxml2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BTNbuscarAPY))
@@ -279,11 +283,13 @@ public class FConsultas1 extends javax.swing.JFrame {
                             .addComponent(PNcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addComponent(jButton1)))
+                                .addComponent(jButton1))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTNxml2)
+                                    .addComponent(jLabel4))))
                         .addGap(32, 32, 32))))
         );
 
