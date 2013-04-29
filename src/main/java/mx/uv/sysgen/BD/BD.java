@@ -231,10 +231,20 @@ public void crearTabla(String nombre, LinkedList<CampoSQL> campos){
     }
    
 }
-/*
-public void llaveForanea(String uno,String dos,String camp){
-    String sentencia="alter table "+uno+" add constraint fk_"+dos" foreign key ";
-}*/
+
+public void llaveForanea(String uno,String dos,String campuno,String campdos){
+    String sentencia="alter table "+uno+" add constraint fk_"+dos+" foreign key ";
+    sentencia=sentencia+" ("+campuno+") references "+dos+" ("+campdos+")";
+    System.out.println(sentencia); 
+    try {
+        System.out.println("---------------------------------");
+        Statement st = conexion.createStatement();
+        st.executeUpdate(sentencia);
+        System.out.println("salió bien");
+    } catch (SQLException ex) {
+        Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
 //después se evaluará si los tipos son correctos y se devolverán
 
 
