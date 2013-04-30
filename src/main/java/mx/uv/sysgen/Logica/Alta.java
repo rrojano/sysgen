@@ -13,7 +13,7 @@ import mx.uv.sysgen.BD.BD;
 import mx.uv.sysgen.BD.FConsultas1;
 
 /**
- *
+ * Clase que maneja la lógica de las altas a los catálogos
  * @author Santi
  */
 
@@ -24,9 +24,11 @@ public class Alta {
     BD bdmanager;
     
     
-    //** Constructor; agrego campos ficticios para que despliegue algo en pantalla **//
-    //----------------------CONSTRUCTOR------------------//
     
+    //----------------------CONSTRUCTOR------------------//
+    /**
+     * Constructor por defecto.
+     */
     public Alta(){
         bdmanager= new BD();
         bdmanager.configuraBD("root", "123", "taller2", 1);
@@ -34,39 +36,46 @@ public class Alta {
         campos = new LinkedList<String>();                    
     }
     
-    //** Agrega los campos de los componentes a la tabla especificada **//
+    
     // ---------------AGREGAR-------------------------------------//
 /**
- * 
- * @param campos 
- * @param tabla 
+ * Agrega los campos de la tabla especificada a la base de datos.
+ * @param campos Lista de campos de la tabla.
+ * @param tabla Tabla a la que pertenecen los campos.
  */    
     public void Agregar(LinkedList<String> campos, String tabla){        
-        bdmanager.consulta(tabla);
+        String sql="insert into "+tabla+"values('"+campos.pop();
+        for(String s:campos){
+            sql = sql + ",'"+s+"'";
+        }
+        sql = sql + ");";
+        System.out.print(sql);
+        //bdmanager.insertar(sql);
+        
     }
     
-    //**regresa las tablas de la bd**//
-    //----------OBTENER TABLAS-------------------//
     
-    public LinkedList<String> getTablas(){
-        //obtener tablas con BD        
+    //----------OBTENER TABLAS-------------------//
+    /**
+     * Accede a la base de datos configurada previamente y agrega los registros.
+     * @return Regresa una lista ligada de nombres de tablas
+     */
+    public LinkedList<String> getTablas(){        
         LinkedList<String> n = new LinkedList<String>();        
         try {
             n = bdmanager.getTablas();
         } catch (SQLException ex) {
             Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
-        }/*
-        n.add("Tabla1");
-        n.add("Tabla2");
-        n.add("Tabla3");
-        n.add("Tabla4");
-        n.add("Tabla5");
-        n.add("Tabla6");
-        n.add("mysql");*/
+        }
         return n;
     }
     
-    //** Obtiene los campos de una tabla usando la clase BD **//
+    // ------------------- OBTENER CAMPOS ----------------------//
+    /**
+     * Obtiene los campos de la tabla especificada.
+     * @param tabla tabla de la que se quieren extraer los campos.
+     * @return Lista ligada de nombres de campos.
+     */
     public LinkedList<String> getCampos(String tabla){
         try{
             campos = bdmanager.getCampos(tabla);

@@ -28,11 +28,13 @@ public class Actualizaciones extends javax.swing.JFrame {
     
     private void DibujaCampos(LinkedList<String> campos){
         panelDatos.removeAll();
+        noCampos=0;
         for(int i=0; i < campos.size(); i++){            
-            panelDatos.add(new JLabel(campos.get(i)));
-            panelDatos.add(new JTextField()); 
+            panelDatos.add(new JLabel(campos.get(i)), i);                       
+            panelDatos.add(new JTextField(), i+noCampos-1); 
             panelDatos.setLayout(new GridLayout(campos.size(), 1, 0,0));
             panelDatos.updateUI();
+            noCampos++;
         }
     }
 
@@ -97,6 +99,11 @@ public class Actualizaciones extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton2.setText("Cancelar");
@@ -339,6 +346,16 @@ public class Actualizaciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        /*LinkedList<String> c;
+        for(int i=0; i<noCampos;i++){
+            i++;
+            c.add();            
+        }
+        logica_alta.Agregar(c, jComboBox1.getSelectedItem().toString());*/
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +391,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         });
     }
     private Alta logica_alta=new Alta();
+    int noCampos=0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
