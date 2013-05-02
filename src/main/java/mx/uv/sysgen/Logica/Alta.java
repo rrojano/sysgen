@@ -44,13 +44,14 @@ public class Alta {
  * @param tabla Tabla a la que pertenecen los campos.
  */    
     public void Agregar(LinkedList<String> campos, String tabla){        
-        String sql="insert into "+tabla+"values('"+campos.pop();
+        String sql="insert into "+tabla+" values('"+campos.pop();
         for(String s:campos){
-            sql = sql + ",'"+s+"'";
+            sql = sql + "','"+s;
         }
-        sql = sql + ");";
-        System.out.print(sql);
-        //bdmanager.insertar(sql);
+        sql = sql + "');";
+        System.out.println(sql);
+        System.out.println(tabla);
+        bdmanager.insertar(sql);
         
     }
     
