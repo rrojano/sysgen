@@ -248,4 +248,42 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
 //después se evaluará si los tipos son correctos y se devolverán
 
 
+    public boolean esLLaveForanea(String tabla, String columna) {
+         String algo="";
+         boolean bandera=false;
+         
+    try {
+        
+        
+        DatabaseMetaData meta= conexion.getMetaData();
+        ResultSet rs=meta.getImportedKeys(conexion.getCatalog(), "algo", tabla);
+        while (rs.next()){
+           String fkColumnName = rs.getString("FKCOLUMN_NAME");
+           /*
+            String fkTableName = rs.getString("FKTABLE_NAME");
+            
+            String pkTableName = rs.getString("PKTABLE_NAME");
+            String pkColumnName = rs.getString("PKCOLUMN_NAME");
+            int fkSequence = rs.getInt("KEY_SEQ");
+            algo=algo+"getExportedKeys(): fkTabbleName="+fkTableName+"\n";
+            algo=algo+"getExportedKeys(): fkColumnName="+fkColumnName+"\n";
+            algo=algo+"getExportedKeys(): pkTabbleName="+pkTableName+"\n";
+            algo=algo+"getExportedKeys(): pkColumnName="+pkColumnName+"\n";
+            algo=algo+"getExportedKeys(): fkSequence="+fkSequence+"\n";
+            */
+            if (fkColumnName.equals(columna)){
+                System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE FORÁNEA");
+                bandera= true;
+            }
+                    
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+    }
+         System.out.println("//"+algo);
+         
+        return bandera;
+    }
+
+
 }

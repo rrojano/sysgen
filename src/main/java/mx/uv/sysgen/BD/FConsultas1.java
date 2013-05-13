@@ -108,6 +108,11 @@ public class FConsultas1 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JTable.setModel(new javax.swing.table.DefaultTableModel());
+        JTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTable);
 
         jLabel1.setText("Consulta");
@@ -221,6 +226,11 @@ public class FConsultas1 extends javax.swing.JFrame {
         });
 
         JTable2.setModel(new javax.swing.table.DefaultTableModel());
+        JTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(JTable2);
 
         BTNxml2.setText("XML");
@@ -341,6 +351,7 @@ public class FConsultas1 extends javax.swing.JFrame {
             DefaultTableModel modelo = new DefaultTableModel();
             modelo=base.consultaAmodelo(this.jTextField1.getText());
             this.JTable.setModel(modelo);
+
         }
     }//GEN-LAST:event_BTNbuscarSQLActionPerformed
     /**
@@ -462,8 +473,24 @@ public class FConsultas1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JCBtablaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCBtablaItemStateChanged
-       
+
     }//GEN-LAST:event_JCBtablaItemStateChanged
+
+    private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
+        
+    }//GEN-LAST:event_JTableMouseClicked
+
+    private void JTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTable2MouseClicked
+        BD base=new BD();
+        base.configuraBD(u, c, e, m);
+        String columna=this.JTable2.getColumnName(this.JTable2.getSelectedColumn());
+        System.out.println("La columna es: "+columna);
+        boolean baaa=base.esLLaveForanea(tabla,columna);
+        if (baaa)
+            System.out.println("es llave foranea");
+        else
+            System.out.println("NO es llave foranea");
+    }//GEN-LAST:event_JTable2MouseClicked
 
     /**
      * @param args the command line arguments
