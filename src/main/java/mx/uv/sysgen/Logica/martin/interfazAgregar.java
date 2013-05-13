@@ -1,3 +1,4 @@
+package mx.uv.sysgen.Logica.martin;
 
 import javax.swing.JScrollPane;
 
