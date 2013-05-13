@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import mx.uv.sysgen.Logica.Alta;
+import mx.uv.sysgen.Logica.Cambio;
 
 /**
  *
@@ -25,6 +27,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         datos = new LinkedList<JTextField>();
         obtenerTablas();
         jComboBox1.setSelectedItem(null);
+        jComboBox3.setSelectedItem(null);
     }    
     
     private void DibujaCampos(LinkedList<String> campos){
@@ -48,6 +51,19 @@ public class Actualizaciones extends javax.swing.JFrame {
         tablas=logica_alta.getTablas();       
         for(String l : tablas){
             jComboBox1.addItem(l);
+        }
+        jComboBox3.removeAllItems();
+        tablas=logica_mod.getTablas();       
+        for(String l : tablas){
+            jComboBox3.addItem(l);
+        }
+    }
+    
+    private void obtenerDatos(){
+        if(jComboBox3.getSelectedItem()!=null){
+        String tabla = jComboBox3.getSelectedItem().toString();        
+        jTable2.setModel(logica_mod.obtenerDatos(tabla));
+        jTable2.updateUI();
         }
     }
     /**
@@ -253,6 +269,11 @@ public class Actualizaciones extends javax.swing.JFrame {
         jLabel7.setText("Tabla:");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,6 +290,11 @@ public class Actualizaciones extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton5.setText("Ejecutar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton6.setText("Cancelar");
@@ -363,6 +389,17 @@ public class Actualizaciones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+        if (evt.getSource()==jComboBox3){        
+            obtenerDatos();
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void clearFields(){
         for(JTextField j:datos){
             j.setText("");
@@ -403,6 +440,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         });
     }
     private Alta logica_alta=new Alta();
+    private Cambio logica_mod = new Cambio();
     int noCampos=0;
     LinkedList<JTextField> datos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
