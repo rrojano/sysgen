@@ -1,5 +1,7 @@
-
+package mx.uv.sysgen.Logica.martin;
 import javax.swing.JScrollPane;
+
+
 
 /*
  * To change this template, choose Tools | Templates
