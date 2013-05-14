@@ -68,10 +68,10 @@ return this.flag;}
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox();
+        tipoVar = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cerrar = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        foraneo = new javax.swing.JLabel();
 
         jLabel1.setText("Nombre (ID):");
 
@@ -82,7 +82,7 @@ return this.flag;}
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entero", "Cadena", "Decimal" }));
+        tipoVar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entero", "Cadena", "Decimal" }));
 
         jLabel2.setText("Tipo del campo:");
 
@@ -99,8 +99,8 @@ return this.flag;}
             }
         });
 
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("               ");
+        foraneo.setForeground(new java.awt.Color(153, 153, 153));
+        foraneo.setText("               ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,11 +114,11 @@ return this.flag;}
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(foraneo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(cerrar)
                 .addContainerGap())
@@ -130,9 +130,9 @@ return this.flag;}
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jCheckBox1)
                 .addComponent(cerrar)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel2)
-                .addComponent(jLabel3))
+                .addComponent(foraneo))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,11 +153,11 @@ return this.flag;}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel cerrar;
+    public javax.swing.JLabel foraneo;
     public javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     public javax.swing.JTextField jTextField1;
+    public javax.swing.JComboBox tipoVar;
     // End of variables declaration//GEN-END:variables
 }
