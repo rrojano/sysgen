@@ -398,6 +398,20 @@ public class Actualizaciones extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        boolean editado=true;
+        
+        if(editado){
+            String tabla = jComboBox3.getSelectedItem().toString();
+            LinkedList<String> tupla = new LinkedList<String>();
+            LinkedList<String> campos = new LinkedList<String>();
+            //jTable2.getValueAt(WIDTH, WIDTH);
+            int r = jTable2.getSelectedRow();
+            for(int i=0; i < jTable2.getColumnCount();i++){
+                tupla.add(jTable2.getValueAt(r, i).toString());
+                campos.add(jTable2.getColumnName(i));
+            }
+            this.logica_mod.cambiar(tabla, tupla, campos);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void clearFields(){

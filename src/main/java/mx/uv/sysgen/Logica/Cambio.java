@@ -53,11 +53,11 @@ public class Cambio {
         String id_value  = tupla.pop();
         String query = "update "+tabla+" set ";        
         for(String s:campos){
-        query = query + s + "="+ tupla.pop() + " ";    
+        query = query + s + "="+"'"+ tupla.pop() + "' ";    
         }
-        query = query + " where "+ id +"="+ id_value +";";
+        query = query + " where "+ id +"='"+ id_value +"';";
         System.out.println(query);
-        //bdmanager.insertar(query);
+        bdmanager.insertar(query);
         return true;
     }
 }
