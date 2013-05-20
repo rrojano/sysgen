@@ -1,4 +1,5 @@
 package mx.uv.sysgen.Logica.martin;
+import mx.uv.sysgen.BD.*;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 
@@ -18,8 +19,10 @@ public class interfazAgregar extends javax.swing.JFrame {
 public JScrollPane scroll = new JScrollPane();
 public PanelClass panel = new PanelClass();   
 public int index=0;
-    
+public BD bd = new BD();
+
     public interfazAgregar() {
+        bd.setBD("taller","12345","root");
         initComponents();
         ocupado.setVisible(false);
         this.setResizable(false);
@@ -32,9 +35,7 @@ public int index=0;
         scroll.setViewportView(panel.getPanel());
         this.getContentPane().add(scroll); 
         this.pack();
-        scroll.setVisible(true);
- 
-          
+        scroll.setVisible(true);    
     }
 
 
@@ -164,8 +165,8 @@ public int index=0;
     private void idCatalogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyTyped
         String texto=idCatalogo.getText();
         if(texto.equalsIgnoreCase("Hola")){ocupado.setVisible(true);
-        ocupado.setBackground(Color.red);ocupado.setText("Ocupado");}
-        else{ocupado.setBackground(Color.green);ocupado.setText("Libre");}
+        ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
+        else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}
     }//GEN-LAST:event_idCatalogoKeyTyped
 
     /**
