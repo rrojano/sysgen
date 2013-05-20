@@ -31,7 +31,7 @@ public class Alta {
      */
     public Alta(){
         bdmanager= new BD();
-        bdmanager.configuraBD("root", "123", "taller2", 1);
+        bdmanager.configuraBD("root", "123", "entrar", 1);
         bdmanager.conectar(1);//
         campos = new LinkedList<String>();                    
     }

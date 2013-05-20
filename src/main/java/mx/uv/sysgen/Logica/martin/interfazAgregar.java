@@ -1,8 +1,8 @@
-
+package mx.uv.sysgen.Logica.martin;
 import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
+
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -17,13 +17,14 @@ public class interfazAgregar extends javax.swing.JFrame {
 
 public JScrollPane scroll = new JScrollPane();
 public PanelClass panel = new PanelClass();   
-public PanelClass panel2 = new PanelClass();
 public int index=0;
     
     public interfazAgregar() {
         initComponents();
-        
-        scroll.setSize(748, 166);
+        ocupado.setVisible(false);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        scroll.setSize(640, 177);
         scroll.setLocation(50, 50);
         
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -42,10 +43,12 @@ public int index=0;
     private void initComponents() {
 
         Agregar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        idCatalogo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Importar = new javax.swing.JButton();
+        ocupado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,13 +59,34 @@ public int index=0;
             }
         });
 
+        idCatalogo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idCatalogoKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("ID Catalogo");
 
         jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Aceptar");
         jButton2.setMaximumSize(new java.awt.Dimension(77, 23));
         jButton2.setMinimumSize(new java.awt.Dimension(77, 23));
+
+        Importar.setText("Importar");
+        Importar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImportarActionPerformed(evt);
+            }
+        });
+
+        ocupado.setForeground(new java.awt.Color(255, 0, 0));
+        ocupado.setText("Ocupado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,34 +95,36 @@ public int index=0;
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(idCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ocupado)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(Importar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                .addComponent(Agregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(idCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(ocupado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Agregar)
+                        .addComponent(Importar))
                     .addComponent(jButton1))
                 .addGap(26, 26, 26))
         );
@@ -108,7 +134,6 @@ public int index=0;
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         index++;
-        panel.setSizecont(index);
         panel.addelement();
         scroll.validate();
 
@@ -116,6 +141,32 @@ public int index=0;
         
         this.pack();
     }//GEN-LAST:event_AgregarActionPerformed
+
+    private void ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarActionPerformed
+        index++;
+        Importar imp = new Importar();
+        
+        panel.addelement(imp.getId(),imp.getTipo());
+        scroll.validate();
+
+        scroll.setVisible(true);
+        
+        this.pack();  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ImportarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         VPlantilla inte = new VPlantilla();
+         inte.setVisible(true);
+         this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void idCatalogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyTyped
+        String texto=idCatalogo.getText();
+        if(texto.equalsIgnoreCase("Hola")){ocupado.setVisible(true);
+        ocupado.setBackground(Color.red);ocupado.setText("Ocupado");}
+        else{ocupado.setBackground(Color.green);ocupado.setText("Libre");}
+    }//GEN-LAST:event_idCatalogoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -153,9 +204,11 @@ public int index=0;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
+    private javax.swing.JButton Importar;
+    private javax.swing.JTextField idCatalogo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel ocupado;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,9 +5,10 @@
 package mx.uv.sysgen.GUI;
 
 import java.awt.GridLayout;
-import java.util.ArrayList;
+import java.sql.ResultSet;
 import java.util.LinkedList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mx.uv.sysgen.Logica.Alta;
@@ -18,6 +19,9 @@ import mx.uv.sysgen.Logica.Cambio;
  * @author Santiu
  */
 public class Actualizaciones extends javax.swing.JFrame {
+     String tabla;
+      ResultSet resultados;
+  
 
     /**
      * Creates new form Actualizaciones
@@ -26,6 +30,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         initComponents();
         datos = new LinkedList<JTextField>();
         obtenerTablas();
+        Tablas();
         jComboBox1.setSelectedItem(null);
         jComboBox3.setSelectedItem(null);
     }    
@@ -66,6 +71,17 @@ public class Actualizaciones extends javax.swing.JFrame {
         jTable2.updateUI();
         }
     }
+    
+    
+    
+     private void Tablas(){
+        CBJ.removeAllItems();
+        LinkedList<String> tablas;
+        tablas=logica_alta.getTablas();       
+        for(String l : tablas){
+         CBJ.addItem(l);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +100,7 @@ public class Actualizaciones extends javax.swing.JFrame {
         panelDatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        CBJ = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -161,7 +177,7 @@ public class Actualizaciones extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton2))))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +200,11 @@ public class Actualizaciones extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jLabel5.setText("Tabla:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CBJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBJActionPerformed(evt);
+            }
+        });
 
         jTable1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -218,6 +238,11 @@ public class Actualizaciones extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         jButton4.setText("Cancelar");
@@ -226,6 +251,12 @@ public class Actualizaciones extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(29, 29, 29)
+                .addComponent(jButton4)
+                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,15 +265,10 @@ public class Actualizaciones extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CBJ, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
+                        .addGap(0, 390, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -251,16 +277,16 @@ public class Actualizaciones extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addGap(1, 1, 1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addContainerGap(192, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Bajas", new javax.swing.ImageIcon(getClass().getResource("/mx/uv/sysgen/Assets/icono_bajas.gif")), jPanel2); // NOI18N
@@ -321,7 +347,7 @@ public class Actualizaciones extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jButton6)))
                     .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +375,7 @@ public class Actualizaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -388,6 +414,49 @@ public class Actualizaciones extends javax.swing.JFrame {
         clearFields();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void CBJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBJActionPerformed
+        
+             if (evt.getSource()== CBJ){
+        //falta funcion para recuperar datos de la tabla seleccionada
+        LinkedList<String> c;
+        if(CBJ.getSelectedItem()!= null){
+         JOptionPane.showMessageDialog(null, "bien.");
+        DefaultTableModel modelo = new DefaultTableModel();
+        BD base=new BD();
+        base.configuraBD("root", "123", "entrar", 1);
+        String tab=(String) CBJ.getSelectedItem();
+        System.out.println(tab);
+        tabla=tab;
+        String cons="select * from "+tabla;
+        ResultSet rs = base.consulta(cons);
+
+        if (rs!=null){
+            resultados= base.consulta(cons);
+            modelo=base.consultaAmodelo(cons);
+            
+            this.jTable1.setModel(modelo);
+        }      
+        
+        }  
+        }
+    }//GEN-LAST:event_CBJActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      // Nuevamente obtenemos el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        //ahora obtenemos la fila selccionada
+        int fila_select = jTable1.getSelectedRow();
+        if(fila_select<0){
+            // no se puede eliminar
+            JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
+        }else {
+          // la eliminamos del modelo:
+        modelo.removeRow(fila_select);
+      //   logica_alta.Agregar(c, jComboBox1.getSelectedItem().toString());
+   //     Baja.elimina(c, jComboBox1.getSelectedItem().toString());
+        }     
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
@@ -458,6 +527,7 @@ public class Actualizaciones extends javax.swing.JFrame {
     int noCampos=0;
     LinkedList<JTextField> datos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CBJ;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -465,7 +535,6 @@ public class Actualizaciones extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
@@ -482,4 +551,11 @@ public class Actualizaciones extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JPanel panelDatos;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    
+
+
+
 }
