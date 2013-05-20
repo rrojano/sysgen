@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import mx.uv.sysgen.BD.BD;
 import mx.uv.sysgen.Logica.Alta;
 import mx.uv.sysgen.Logica.Cambio;
 

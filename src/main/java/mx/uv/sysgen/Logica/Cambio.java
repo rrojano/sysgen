@@ -18,7 +18,9 @@ import mx.uv.sysgen.BD.BD;
 public class Cambio {
     LinkedList<String> campos;
     BD bdmanager; 
-    
+    /**
+     * constructor por defecto
+     */
     public Cambio(){
         bdmanager= new BD();
         bdmanager.configuraBD("root", "123", "taller2", 1);
@@ -40,14 +42,24 @@ public class Cambio {
         }
         return n;
     }
-    
+    /**
+     * devuelve un diseño de JTable con los datos de la tabla elegida
+     * @param tabla tabla de la que se quieren recuperar datos
+     * @return diseño de tabla con las tuplas extraidas
+     */ 
     public DefaultTableModel obtenerDatos(String tabla){
         String query;
         query = "select * from "+tabla+";";
         System.out.println(query);
         return bdmanager.consultaAmodelo(query);
     }
-    
+    /**
+     * 
+     * @param tabla tabla de la que se quiere recuperar los datos
+     * @param tupla tupla que se quiere cambiar
+     * @param campos campos de la tabla para actualizar
+     * @return verdadero si el cambio fue exitoso, falso si fue fallido
+     */
     public boolean cambiar(String tabla, LinkedList<String> tupla, LinkedList<String> campos){
         String id = campos.pop();
         String id_value  = tupla.pop();
