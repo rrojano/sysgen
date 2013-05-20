@@ -17,7 +17,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+
 public class BD {
+    
 public String bd = "algo";//nombre_bd
 public String login = "root";//usuario
 public String password = "Gamblert77";//contraseÃ±a
@@ -63,6 +66,12 @@ try {
         mostrarMensaje(ex.getMessage());
         }
 return conexion;
+}
+
+public void setBD(String nomb,String pass,String user){
+    this.login=user;
+    this.password=pass;
+    this.bd=nomb;
 }
 //Cierra la conexión, cuando cierren su ventana llamen a este método
 
