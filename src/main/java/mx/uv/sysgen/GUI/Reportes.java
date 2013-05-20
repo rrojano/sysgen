@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mx.uv.sysgen.BD.BD;
 import javax.swing.*;
+import mx.uv.sysgen.Logica.GenerarReporte;
 //import mx.uv.sysgen.BD.ConexionBD;
 
 
@@ -254,10 +255,7 @@ public class Reportes extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CBTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+            .addComponent(CBTablas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,6 +267,11 @@ public class Reportes extends javax.swing.JFrame {
 
         BGenerar.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\reporte.png")); // NOI18N
         BGenerar.setText("Generar Rep");
+        BGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BGenerarActionPerformed(evt);
+            }
+        });
 
         BCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\cancelar.png")); // NOI18N
         BCancelar.setText("Cancelar");
@@ -278,8 +281,8 @@ public class Reportes extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE)
+                .addComponent(BCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BGenerar)
                 .addContainerGap())
@@ -357,6 +360,11 @@ public class Reportes extends javax.swing.JFrame {
         // TODO add your handling code here:
         CargarCampos(); 
     }//GEN-LAST:event_CBTablasActionPerformed
+
+    private void BGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BGenerarActionPerformed
+        // TODO add your handling code here:
+        GenerarReporte GenerarR =new GenerarReporte();
+    }//GEN-LAST:event_BGenerarActionPerformed
 
     /**
      * @param args the command line arguments
