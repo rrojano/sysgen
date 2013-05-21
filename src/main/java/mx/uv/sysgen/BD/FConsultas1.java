@@ -56,15 +56,23 @@ public class FConsultas1 extends javax.swing.JFrame {
                        u=conf.TFusuario.getText();
                        e=conf. TFesquema.getText();
                        String man=(String) conf.JCBmanej.getSelectedItem();
-                       if (man.equals("MySQL"))   
+                       if (man.equals("MySQL")){   
                            m=1;
-                       else if (man.equals("Oracle"))   
+                           LBLmanejador.setText("Manejador: MySQL");
+                           LBLmanejador2.setText("Manejador: MySQL");
+                       }
+                       else if (man.equals("Oracle")){
                            m=2;
-                       else
+                           LBLmanejador.setText("Manejador: Oracle");
+                           LBLmanejador2.setText("Manejador: Oracle");
+                       }   
+                       else{
                            m=3;
+                           LBLmanejador.setText("Manejador: Otro");
+                           LBLmanejador2.setText("Manejador: Otro");
+                       }
                        //mostrar qué manejador se está usando, en la ventana
-                       LBLmanejador.setText("Manejador: "+m);
-                       LBLmanejador2.setText("Manejador: "+m);
+                       
                        conf.dispose();
                      }
         });
@@ -101,18 +109,12 @@ public class FConsultas1 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         JTable2 = new javax.swing.JTable();
         BTNxml2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         JTable.setModel(new javax.swing.table.DefaultTableModel());
-        JTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JTableMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(JTable);
 
         jLabel1.setText("Consulta");
@@ -226,11 +228,6 @@ public class FConsultas1 extends javax.swing.JFrame {
         });
 
         JTable2.setModel(new javax.swing.table.DefaultTableModel());
-        JTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JTable2MouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(JTable2);
 
         BTNxml2.setText("XML");
@@ -240,19 +237,12 @@ public class FConsultas1 extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 373, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(LBLmanejador2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -266,11 +256,11 @@ public class FConsultas1 extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(BTNbuscarAPY))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(91, 91, 91)
+                                .addComponent(BTNbuscarAPY)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(BTNxml2)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
@@ -291,16 +281,11 @@ public class FConsultas1 extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(PNcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(BTNxml2)
-                                    .addComponent(jLabel4))))
-                        .addGap(32, 32, 32))))
+                            .addComponent(BTNxml2)
+                            .addComponent(jLabel4))
+                        .addGap(40, 40, 40))))
         );
 
         jTabbedPane1.addTab("Consulta Apoyada", jPanel2);
@@ -461,17 +446,6 @@ public class FConsultas1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BTNxml2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BD base=new BD();
-        base.configuraBD(u,c,e,m);
-        LinkedList<CampoSQL> a=new LinkedList<CampoSQL>();
-        a.add(new CampoSQL("id","varchar(25)",true,false));
-        a.add(new CampoSQL("tres","varchar(25)",false,false));
-        a.add(new CampoSQL("three","varchar(25)",false,true));
-        a.add(new CampoSQL("trois","varchar(25)",false,false));
-        base.crearTabla("tres", a);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void JCBtablaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCBtablaItemStateChanged
 
     }//GEN-LAST:event_JCBtablaItemStateChanged
@@ -534,10 +508,9 @@ public class FConsultas1 extends javax.swing.JFrame {
     private javax.swing.JComboBox JCBtabla;
     private javax.swing.JTable JTable;
     private javax.swing.JTable JTable2;
-    private javax.swing.JLabel LBLmanejador;
-    private javax.swing.JLabel LBLmanejador2;
+    public javax.swing.JLabel LBLmanejador;
+    public javax.swing.JLabel LBLmanejador2;
     private javax.swing.JPanel PNcampos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
