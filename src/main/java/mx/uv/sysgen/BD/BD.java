@@ -68,11 +68,6 @@ try {
 return conexion;
 }
 
-public void setBD(String nomb,String pass,String user){
-    this.login=user;
-    this.password=pass;
-    this.bd=nomb;
-}
 //Cierra la conexión, cuando cierren su ventana llamen a este método
 
 public void desconectar(){
@@ -121,7 +116,7 @@ public void insertar(String a) {
  * @return una tabla de resultados, este objeto contiene todas las tuplas encontradas a partir de la consulta
  */
 public ResultSet consulta(String a){
-     ResultSet rs = null;
+     ResultSet rs = null; 
      try
      {
          Statement s = conexion.createStatement(); 
