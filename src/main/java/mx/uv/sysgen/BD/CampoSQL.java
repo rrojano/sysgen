@@ -8,7 +8,7 @@ package mx.uv.sysgen.BD;
  *
  * @author Luis Enrique
  */
-class CampoSQL{
+public class CampoSQL{
     String campo;
     String tipo="varchar(20)";
     boolean llavePrim=false;
