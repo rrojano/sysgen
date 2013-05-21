@@ -17,10 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-
 public class BD {
-    
 public String bd = "algo";//nombre_bd
 public String login = "root";//usuario
 public String password = "Gamblert77";//contraseÃ±a
@@ -67,7 +64,6 @@ try {
         }
 return conexion;
 }
-
 //Cierra la conexión, cuando cierren su ventana llamen a este método
 
 public void desconectar(){
@@ -116,7 +112,7 @@ public void insertar(String a) {
  * @return una tabla de resultados, este objeto contiene todas las tuplas encontradas a partir de la consulta
  */
 public ResultSet consulta(String a){
-     ResultSet rs = null; 
+     ResultSet rs = null;
      try
      {
          Statement s = conexion.createStatement(); 
@@ -263,18 +259,6 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
         ResultSet rs=meta.getImportedKeys(conexion.getCatalog(), "algo", tabla);
         while (rs.next()){
            String fkColumnName = rs.getString("FKCOLUMN_NAME");
-           /*
-            String fkTableName = rs.getString("FKTABLE_NAME");
-            
-            String pkTableName = rs.getString("PKTABLE_NAME");
-            String pkColumnName = rs.getString("PKCOLUMN_NAME");
-            int fkSequence = rs.getInt("KEY_SEQ");
-            algo=algo+"getExportedKeys(): fkTabbleName="+fkTableName+"\n";
-            algo=algo+"getExportedKeys(): fkColumnName="+fkColumnName+"\n";
-            algo=algo+"getExportedKeys(): pkTabbleName="+pkTableName+"\n";
-            algo=algo+"getExportedKeys(): pkColumnName="+pkColumnName+"\n";
-            algo=algo+"getExportedKeys(): fkSequence="+fkSequence+"\n";
-            */
             if (fkColumnName.equals(columna)){
                 System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE FORÁNEA");
                 bandera= true;
@@ -288,6 +272,34 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
          
         return bandera;
     }
-
-
+    /**
+     * 
+     * @param tabla String que indica la tabla sobre que se efectuará el alter
+     * @param columna String que refiere al campo o columna  que sufrirá la 
+     * alteración
+     * @param tipoDato String que contiene el tipo de dato que se especifica 
+     * para alter add y alter modify
+     * @param opción int que refleja el tipo de alteración que se realizará en 
+     * la tabla: adición, borrado o modificación  de columnas
+     */
+    public void alterarTabla(String tabla,String columna,String tipoDato, int opción){
+            
+        String sentencia="alter table "+tabla;
+        if (opción==1){//modificar el tipo de dato de un campo
+            sentencia+=" modify "+columna+" "+tipoDato;
+        }
+        else if (opción==2){//agregar un campo a la tabla
+            sentencia+=" add "+columna+" "+tipoDato;
+        }
+        else{//borrar un campo de la tabla
+            sentencia+=" drop "+columna;
+        }
+        try{
+        Statement st = conexion.createStatement();
+        st.executeUpdate(sentencia);
+        }catch (Exception e){
+            System.out.println("error");
+        }
+    }
+    
 }
