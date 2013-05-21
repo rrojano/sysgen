@@ -57,7 +57,7 @@ public LinkedList<String> tablas= new LinkedList<String>();
         idCatalogo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Aceptar = new javax.swing.JButton();
         Importar = new javax.swing.JButton();
         ocupado = new javax.swing.JLabel();
 
@@ -74,9 +74,6 @@ public LinkedList<String> tablas= new LinkedList<String>();
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idCatalogoKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                idCatalogoKeyTyped(evt);
-            }
         });
 
         jLabel1.setText("ID Catalogo");
@@ -88,9 +85,14 @@ public LinkedList<String> tablas= new LinkedList<String>();
             }
         });
 
-        jButton2.setText("Aceptar");
-        jButton2.setMaximumSize(new java.awt.Dimension(77, 23));
-        jButton2.setMinimumSize(new java.awt.Dimension(77, 23));
+        Aceptar.setText("Aceptar");
+        Aceptar.setMaximumSize(new java.awt.Dimension(77, 23));
+        Aceptar.setMinimumSize(new java.awt.Dimension(77, 23));
+        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarActionPerformed(evt);
+            }
+        });
 
         Importar.setText("Importar");
         Importar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public LinkedList<String> tablas= new LinkedList<String>();
                 .addGap(11, 11, 11)
                 .addComponent(Importar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79))
@@ -136,7 +138,7 @@ public LinkedList<String> tablas= new LinkedList<String>();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Agregar)
                         .addComponent(Importar))
                     .addComponent(jButton1))
@@ -175,16 +177,6 @@ public LinkedList<String> tablas= new LinkedList<String>();
          this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void idCatalogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyTyped
-    /*    String texto=idCatalogo.getText();
-        for(int i=0; i<tablas.size();i++){
-            if(texto.equalsIgnoreCase(tablas.get(i).trim())){ocupado.setVisible(true);
-            ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
-            else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}
-        }
-      */  
-    }//GEN-LAST:event_idCatalogoKeyTyped
-
     private void idCatalogoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyReleased
         this.texto=idCatalogo.getText();
         for(int i=0; i<tablas.size();i++){
@@ -195,6 +187,40 @@ public LinkedList<String> tablas= new LinkedList<String>();
          // TODO add your handling code here:
     }//GEN-LAST:event_idCatalogoKeyReleased
 
+    private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
+    LinkedList<CampoSQL> tabla= new LinkedList<CampoSQL>();
+    if(this.ocupado.getText().equalsIgnoreCase("Ocupado") || this.idCatalogo.getText().equalsIgnoreCase(""))
+    {JOptionPane.showMessageDialog(null, "Revise el nombre del catálogo", "Advertencia",JOptionPane.WARNING_MESSAGE);}
+    else {JOptionPane.showMessageDialog(null, "El catálogo se agregó correctamente.", "Advertencia",JOptionPane.WARNING_MESSAGE);
+    for (int i=0; i<panel.arreglo.size(); i++){
+        jpComponente jpc = (jpComponente) panel.arreglo.get(i); 
+    tabla.add(setCampSQL(jpc));    
+    }
+    bd.crearTabla(idCatalogo.getText(), tabla);
+    
+    }
+    }//GEN-LAST:event_AceptarActionPerformed
+
+
+public CampoSQL setCampSQL(jpComponente jpc){
+    String tipo;
+    boolean nonulo=false;;
+    if(jpc.tipodevar.equalsIgnoreCase("date")||jpc.tipodevar.equalsIgnoreCase("date")){
+    tipo=jpc.tipodevar;}
+    else{ 
+    tipo=jpc.tipodevar+"("+jpc.tamanio.getText()+")";
+    if(jpc.tamanio.getText().equalsIgnoreCase("") ||jpc.tamanio.getText().equalsIgnoreCase("0")){
+    nonulo=true;
+    }
+    else{nonulo=false;}
+    }
+    boolean llavePrim;
+    if(jpc.jCheckBox1.isSelected()== true){llavePrim=true;}
+    else {llavePrim=false;}
+    System.out.println(tipo);
+    CampoSQL campo = new CampoSQL(jpc.jTextField1.getText(),tipo,llavePrim,nonulo);
+    return campo;
+}
     /**
      * @param args the command line arguments
      */
@@ -230,11 +256,11 @@ public LinkedList<String> tablas= new LinkedList<String>();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Aceptar;
     private javax.swing.JButton Agregar;
     private javax.swing.JButton Importar;
     private javax.swing.JTextField idCatalogo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel ocupado;
     // End of variables declaration//GEN-END:variables

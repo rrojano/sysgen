@@ -2,8 +2,15 @@ package mx.uv.sysgen.Logica.martin;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /*
  * To change this template, choose Tools | Templates
@@ -14,9 +21,10 @@ import javax.swing.JFrame;
  *
  * @author GON
  */
-public class jpComponente extends javax.swing.JPanel {
+public class jpComponente extends javax.swing.JPanel implements  ActionListener{
 public String nombre;
 private int index; 
+public String tipodevar="varchar";
 private boolean flag=false;
 public boolean bloqueado=false;
 
@@ -25,6 +33,7 @@ public boolean bloqueado=false;
      */
     public jpComponente(int indx) {
         initComponents();
+        tipoVar.addActionListener(this);
         //this.jLabel3.setVisible(false);
         this.index=indx;
         setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -33,13 +42,25 @@ public boolean bloqueado=false;
         this.cerrar.setName(nombre);
         this.nombre="Comp"+index;
         this.cerrar.setName(nombre);
-        
+        SNumeros(this.tamanio);
             
         //("key_"+index)
         //this.jButton1.setActionCommand("key_"+index); 
     }
 
-public void setNombre(){}
+
+    
+public void SNumeros(JTextField a){
+a.addKeyListener(new KeyAdapter() {
+public void keyTyped(KeyEvent e){
+    char c=e.getKeyChar();
+    if (Character.isLetter(c)){
+        getToolkit().beep();
+        e.consume();
+    }
+}
+});
+}
 
 
 public String getNombre(){
@@ -72,6 +93,8 @@ return this.flag;}
         jLabel2 = new javax.swing.JLabel();
         cerrar = new javax.swing.JLabel();
         foraneo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tamanio = new javax.swing.JTextField();
 
         jLabel1.setText("Nombre (ID):");
 
@@ -82,7 +105,7 @@ return this.flag;}
             }
         });
 
-        tipoVar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entero", "Cadena", "Decimal" }));
+        tipoVar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cadena", "Entero", "Decimal", "Fecha", "Hora" }));
 
         jLabel2.setText("Tipo del campo:");
 
@@ -102,6 +125,10 @@ return this.flag;}
         foraneo.setForeground(new java.awt.Color(153, 153, 153));
         foraneo.setText("               ");
 
+        jLabel3.setText("Longitud:");
+
+        tamanio.setText("20");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +137,11 @@ return this.flag;}
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,7 +150,7 @@ return this.flag;}
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(foraneo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar)
                 .addContainerGap())
         );
@@ -132,7 +163,9 @@ return this.flag;}
                 .addComponent(cerrar)
                 .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel2)
-                .addComponent(foraneo))
+                .addComponent(foraneo)
+                .addComponent(jLabel3)
+                .addComponent(tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,7 +190,29 @@ return this.flag;}
     public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField tamanio;
     public javax.swing.JComboBox tipoVar;
     // End of variables declaration//GEN-END:variables
+
+    public void actionPerformed(ActionEvent e) {
+        JComboBox cb = (JComboBox)e.getSource();
+        String tipvar = (String)cb.getSelectedItem();
+        if(tipvar.equalsIgnoreCase("Fecha")||tipvar.equalsIgnoreCase("Hora")){
+            this.tamanio.setText("");
+            this.tamanio.setEnabled(false);}
+        else{this.tamanio.setEnabled(true);
+             this.tamanio.setText("20");}
+        switch(this.tipoVar.getSelectedIndex()){
+            case 0: this.tipodevar="varchar";break;
+            case 1: this.tipodevar="integer";break;
+            case 2: this.tipodevar="double";break;
+            case 3: this.tipodevar="date";break;
+            case 4: this.tipodevar="time";break;
+        }
+        
+        
+        //updateLabel(petName);
+    }
 }
