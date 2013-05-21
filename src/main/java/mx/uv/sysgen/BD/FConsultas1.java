@@ -92,15 +92,15 @@ public class FConsultas1 extends javax.swing.JFrame {
 
         jComboBox1 = new javax.swing.JComboBox();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        PNLconsulta_sql = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         LBLmanejador = new javax.swing.JLabel();
         BTNbuscarSQL = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        BTNxml = new javax.swing.JButton();
+        PNLconsulta_apy = new javax.swing.JPanel();
         JCBtabla = new javax.swing.JComboBox();
         LBLmanejador2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -113,6 +113,7 @@ public class FConsultas1 extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultas");
 
         JTable.setModel(new javax.swing.table.DefaultTableModel());
         jScrollPane1.setViewportView(JTable);
@@ -133,60 +134,60 @@ public class FConsultas1 extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("XML");
-        jButton2.setName("BTNxml"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BTNxml.setText("XML");
+        BTNxml.setName("BTNxml"); // NOI18N
+        BTNxml.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BTNxmlActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PNLconsulta_sqlLayout = new javax.swing.GroupLayout(PNLconsulta_sql);
+        PNLconsulta_sql.setLayout(PNLconsulta_sqlLayout);
+        PNLconsulta_sqlLayout.setHorizontalGroup(
+            PNLconsulta_sqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PNLconsulta_sqlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PNLconsulta_sqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PNLconsulta_sqlLayout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BTNbuscarSQL))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PNLconsulta_sqlLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PNLconsulta_sqlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(PNLconsulta_sqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PNLconsulta_sqlLayout.createSequentialGroup()
                                 .addComponent(LBLmanejador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32))
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(BTNxml, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PNLconsulta_sqlLayout.setVerticalGroup(
+            PNLconsulta_sqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PNLconsulta_sqlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(BTNxml)
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PNLconsulta_sqlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTNbuscarSQL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LBLmanejador))
         );
 
-        jTabbedPane1.addTab("Consulta SQL", jPanel1);
+        jTabbedPane1.addTab("Consulta SQL", PNLconsulta_sql);
 
-        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+        PNLconsulta_apy.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel2ComponentShown(evt);
+                PNLconsulta_apyComponentShown(evt);
             }
         });
 
@@ -237,58 +238,56 @@ public class FConsultas1 extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout PNLconsulta_apyLayout = new javax.swing.GroupLayout(PNLconsulta_apy);
+        PNLconsulta_apy.setLayout(PNLconsulta_apyLayout);
+        PNLconsulta_apyLayout.setHorizontalGroup(
+            PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PNLconsulta_apyLayout.createSequentialGroup()
+                .addGap(0, 373, Short.MAX_VALUE)
                 .addComponent(LBLmanejador2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
                         .addComponent(PNcampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
+                        .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
                                 .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(BTNbuscarAPY)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(BTNbuscarAPY))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BTNxml2)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        PNLconsulta_apyLayout.setVerticalGroup(
+            PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PNLconsulta_apyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JCBtabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BTNbuscarAPY))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(LBLmanejador2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PNLconsulta_apyLayout.createSequentialGroup()
+                        .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                             .addComponent(PNcampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PNLconsulta_apyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BTNxml2)
                             .addComponent(jLabel4))
                         .addGap(40, 40, 40))))
         );
 
-        jTabbedPane1.addTab("Consulta Apoyada", jPanel2);
+        jTabbedPane1.addTab("Consulta Apoyada", PNLconsulta_apy);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,7 +312,7 @@ public class FConsultas1 extends javax.swing.JFrame {
      * 
      * @param evt evento de clic en el botón XML
      */
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BTNxmlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNxmlActionPerformed
         // TODO add your handling code here:
         if (resultados!=null){
             ResultSetToXML xml=new ResultSetToXML();
@@ -324,7 +323,7 @@ public class FConsultas1 extends javax.swing.JFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BTNxmlActionPerformed
 
     private void BTNbuscarSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNbuscarSQLActionPerformed
         BD base=new BD();
@@ -343,9 +342,9 @@ public class FConsultas1 extends javax.swing.JFrame {
      * 
      * @param evt evento mostrado de jPanel2
      */
-    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
+    private void PNLconsulta_apyComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_PNLconsulta_apyComponentShown
        recargaTablas();
-    }//GEN-LAST:event_jPanel2ComponentShown
+    }//GEN-LAST:event_PNLconsulta_apyComponentShown
 
     /**
      * 
@@ -504,19 +503,19 @@ public class FConsultas1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTNbuscarAPY;
     private javax.swing.JButton BTNbuscarSQL;
+    private javax.swing.JButton BTNxml;
     private javax.swing.JButton BTNxml2;
     private javax.swing.JComboBox JCBtabla;
     private javax.swing.JTable JTable;
     private javax.swing.JTable JTable2;
-    public javax.swing.JLabel LBLmanejador;
-    public javax.swing.JLabel LBLmanejador2;
+    private javax.swing.JLabel LBLmanejador;
+    private javax.swing.JLabel LBLmanejador2;
+    private javax.swing.JPanel PNLconsulta_apy;
+    private javax.swing.JPanel PNLconsulta_sql;
     private javax.swing.JPanel PNcampos;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
