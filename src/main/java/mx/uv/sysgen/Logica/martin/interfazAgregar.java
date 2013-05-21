@@ -1,5 +1,8 @@
 package mx.uv.sysgen.Logica.martin;
+import mx.uv.sysgen.BD.*;
 import java.awt.Color;
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 
@@ -18,9 +21,19 @@ public class interfazAgregar extends javax.swing.JFrame {
 public JScrollPane scroll = new JScrollPane();
 public PanelClass panel = new PanelClass();   
 public int index=0;
-    
+public BD bd = new BD();
+public String texto;
+public LinkedList<String> tablas= new LinkedList<String>();
+
+
     public interfazAgregar() {
+        bd.configuraBD("root","12345","taller", 1);
         initComponents();
+        try{
+        tablas=bd.getTablas();}
+        catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Tablas no encontradas", "Advertencia",JOptionPane.WARNING_MESSAGE);}
+  
         ocupado.setVisible(false);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -32,9 +45,7 @@ public int index=0;
         scroll.setViewportView(panel.getPanel());
         this.getContentPane().add(scroll); 
         this.pack();
-        scroll.setVisible(true);
- 
-          
+        scroll.setVisible(true);    
     }
 
 
@@ -60,6 +71,9 @@ public int index=0;
         });
 
         idCatalogo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                idCatalogoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 idCatalogoKeyTyped(evt);
             }
@@ -162,11 +176,24 @@ public int index=0;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void idCatalogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyTyped
-        String texto=idCatalogo.getText();
-        if(texto.equalsIgnoreCase("Hola")){ocupado.setVisible(true);
-        ocupado.setBackground(Color.red);ocupado.setText("Ocupado");}
-        else{ocupado.setBackground(Color.green);ocupado.setText("Libre");}
+    /*    String texto=idCatalogo.getText();
+        for(int i=0; i<tablas.size();i++){
+            if(texto.equalsIgnoreCase(tablas.get(i).trim())){ocupado.setVisible(true);
+            ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
+            else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}
+        }
+      */  
     }//GEN-LAST:event_idCatalogoKeyTyped
+
+    private void idCatalogoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyReleased
+        this.texto=idCatalogo.getText();
+        for(int i=0; i<tablas.size();i++){
+            if(texto.equalsIgnoreCase(tablas.get(i).trim())){ocupado.setVisible(true);
+            ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
+            else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}
+        }
+         // TODO add your handling code here:
+    }//GEN-LAST:event_idCatalogoKeyReleased
 
     /**
      * @param args the command line arguments
