@@ -347,7 +347,7 @@ public class Reportes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBMaestroDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMaestroDetalleActionPerformed
-          JOptionPane.showMessageDialog(null,"No hay nadada"); 
+          JOptionPane.showMessageDialog(null,"","INFORMACIÓN",JOptionPane.INFORMATION_MESSAGE); 
         // TODO add your handling code here:
     }//GEN-LAST:event_JBMaestroDetalleActionPerformed
 
