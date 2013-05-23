@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import mx.uv.sysgen.BD.FConsultas1;
 
 /**
  *
@@ -30,12 +31,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          JMenuBar barra;
        //= new JMenuBar();
  /* ---- DECLARAMOS LOS MENUS  ----*/        
-        JMenu menu_archivo, menu_catalogos,menu_plantillas,menu_reportes;//,menu_consultas;
+        JMenu menu_archivo, menu_catalogos,menu_plantillas,menu_reportes, menu_configurar;//,menu_consultas;
  /* ---- DECLARAMOS LAS OPCIONES DE LOS MENUS  ----*/       
         JMenuItem op_salir,op_imprimir;
         JMenuItem op_actualizarCatalogos;
         JMenuItem op_generarPlantillas;
         JMenuItem op_generarReportes;
+        JMenuItem op_consultas;
+        JMenuItem op_opciones;
        // JMenuItem op_catclientes,op_catventas,op_catproductos,op_catpagos;
         
   /* ************ Creo mi Barra de menus ******************************************* */      
@@ -45,6 +48,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu_catalogos = new JMenu("Catalogos");
         menu_plantillas = new JMenu("Plantilla");
         menu_reportes  = new JMenu("Reportes");
+        menu_configurar  = new JMenu("Configuración");
         //menu_consultas=new JMenu("Consultas");
  /********* Cambiamos de color la barra de menus ************/       
  // barra.setBackground (Color.lightGray);
@@ -84,7 +88,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                        
             }
         });
-        
+/* ------------------ CREAMOS LAS OPCIONES DE CONSULTAS------------------------- */            
+       op_consultas = new JMenuItem("Consultas",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\consultas.png"));
+        op_consultas.setAccelerator(KeyStroke.getKeyStroke('Q',java.awt.event.InputEvent.ALT_MASK));
+        op_consultas.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {               
+                FConsultas1 ventanaCons= new FConsultas1();
+                ventanaCons.setVisible(true);
+                                       
+            }
+        });        
+/* ------------------ CREAMOS LAS OPCIONES DE CONFIGURACIÓN------------------------- */            
+       op_opciones= new JMenuItem("Opciones",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\configurar.png"));
+        op_opciones.setAccelerator(KeyStroke.getKeyStroke('O',java.awt.event.InputEvent.ALT_MASK));
+        op_opciones.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {               
+                Ventana_Confiuración ventanaConf= new Ventana_Confiuración();
+                ventanaConf.setVisible(true);
+                                       
+            }
+        });                
 /* ------------------ CREAMOS LAS OPCIONES DEL MENU INFRAESTRUCTURA------------------------- */        
       
            op_generarPlantillas = new JMenuItem("Generar Plantilla",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\infraestructura.png"));
@@ -111,8 +134,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        menu_archivo.add(op_salir); 
        menu_archivo.add(op_imprimir);       
        menu_catalogos.add( op_actualizarCatalogos);
+       menu_catalogos.add( op_consultas);
        menu_plantillas.add(op_generarPlantillas);
        menu_reportes.add(op_generarReportes);
+       menu_configurar.add(op_opciones);
        
        
  /* ----------------------------- AGREGAMOS LOS MENUS A LA BARRA DE MENUS -------------------*/
@@ -121,7 +146,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         barra.add( menu_catalogos);
         barra.add(menu_plantillas);
         barra.add( menu_reportes);
-        //barra.add(menu_consultas);
+        barra.add(menu_configurar);
         
        setJMenuBar(barra);
    }

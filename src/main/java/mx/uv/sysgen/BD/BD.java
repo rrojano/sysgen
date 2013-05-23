@@ -87,6 +87,7 @@ public void configuraBD(String u, String c, String e, int m){
     bd=e;
     url="jdbc:mysql://localhost/"+e;
     conectar(m);
+    
 }
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 /**
