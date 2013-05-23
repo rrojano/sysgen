@@ -29,26 +29,28 @@ public class PanelClass extends JPanel implements ActionListener, MouseListener{
     private int key=1;
     public ArrayList<Object> arreglo = new ArrayList<Object>();
 
-    
+//Constructor de la clase panel
 public PanelClass (){
                  cont.setPreferredSize(new Dimension(637, 174));
                  cont.setVisible(true);
                  cont.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0)); 
                 }
 
+//Regresa el panel contenedor
 public JPanel getPanel (){
 return cont;
 }
 
+//Cambia el tamaño del panel conetedor al agregar un nuevo panel
 public void setSizeAdd(){
 if(arreglo.size()>6){
 y=y+29;
     cont.setPreferredSize(new Dimension(748, y));
     cont.validate();
 }
-
-
 }
+
+//Cambia el tamaño del panel contenedor al eliminar un panel interno
 public void setSizeElm(){
  if(arreglo.size()>=6){
  y=y-29;
@@ -56,11 +58,20 @@ public void setSizeElm(){
  cont.validate();
  }
 }
+
+//Agrega un nuevo elemento al panel contenedor
 public void addelement(){
+//Se crea un nuevo componente
     jpComponente comp = new jpComponente(index+1);
-    if (this.key==0){comp.setChbxoff();}
+//Se asigna el tamaño del componente
+    comp.setPreferredSize(new Dimension( 635,29));
+//Si key es 0 no hay un componente seleccionado como llave primaria
+    if (this.key==0){comp.setChbxoff();} //si es 0 desactiva el checkbox del componente que se cree
+
+// se agrega este elemento como escucha de eventos a los  elementos en el componente CheckBox y cerrar
     comp.jCheckBox1.addActionListener(this);
     comp.cerrar.addMouseListener(this);
+//Se agrega el componente al arreglo y al panel contenedor
     arreglo.add(comp);
     cont.add(comp);
     setSizeAdd();
@@ -69,6 +80,7 @@ public void addelement(){
 }
 public void addelement(String id, int tipo){
     jpComponente comp = new jpComponente(index+1);
+    comp.setPreferredSize(new Dimension( 635,29));
     if (this.key==0){comp.setChbxoff();}
     comp.jCheckBox1.setVisible(false);
     comp.jTextField1.setText(id);
