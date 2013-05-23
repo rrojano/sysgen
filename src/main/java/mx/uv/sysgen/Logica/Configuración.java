@@ -29,6 +29,7 @@ private int manejador= 1; //MySQL
 
 
 //gets de los atributos
+
 public String getRuta_Reportes(){
     return ruta_Reportes;
 }
@@ -45,6 +46,11 @@ public int getManejador(){
     return manejador;
 }
 
+/**
+ * 
+ * @return abre el archivo conf.bin, el cual se encuentra en el directorio raíz del proyecto
+ * si no lo encuentra enviará un mensaje indicando un problema con la ruta
+ */
 public Configuración abrirArchivo(){
         FileInputStream fis = null;
         ObjectInputStream ois = null;
@@ -63,7 +69,10 @@ public Configuración abrirArchivo(){
         }
         return a;
     }
-
+/**
+ * 
+ * @param nueva la nueva configuración que será guardada en el archivo
+ */
 public void guardarArchivo(Configuración nueva){
     try{ 
               FileOutputStream fos=new FileOutputStream("conf.bin");
@@ -74,13 +83,24 @@ public void guardarArchivo(Configuración nueva){
               mostrarMensaje(ex.getMessage());
           }
 }
+/**
+ * 
+ * @param mensaje mensaje que se mostrara en la ventana de mensaje
+ */
 public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "Advertencia",
                         JOptionPane.WARNING_MESSAGE);
 }
 
     
-
+/**
+ * 
+ * @param u usuario
+ * @param c contraseña
+ * @param e esquema / base de datos
+ * @param man manejador 1=MySQL 2=Oracle 3=Otro
+ * @param r ruta para guardar los reportes
+ */
     public void actualizar(String u, String c, String e, int man, String r) {
         usuario=u;
         contraseña=c;
@@ -90,16 +110,3 @@ public void mostrarMensaje(String mensaje) {
     }
 
 }
-
-/*
- if( manejadorArchivo == null ) manejadorArchivo = new JFileChooser();
-	            manejadorArchivo.setFileSelectionMode( JFileChooser.FILES_ONLY );
- int seleccion = manejadorArchivo.showOpenDialog( mntmAbrir );
-	            if( seleccion == JFileChooser.APPROVE_OPTION )
-	            {
-	                File f = manejadorArchivo.getSelectedFile();
-	                
-	                    String nombre = f.getName();
-	                    String path = f.getAbsolutePath();
-	                    conf=getArchivo(path);
- */
