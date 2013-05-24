@@ -103,7 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         op_opciones.setAccelerator(KeyStroke.getKeyStroke('O',java.awt.event.InputEvent.ALT_MASK));
         op_opciones.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {               
-                Ventana_Confiuración ventanaConf= new Ventana_Confiuración();
+                Ventana_Configuración ventanaConf= new Ventana_Configuración();
                 ventanaConf.setVisible(true);
                                        
             }
