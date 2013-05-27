@@ -41,8 +41,8 @@ try {
   Class.forName("com.mysql.jdbc.Driver");  
   conexion = DriverManager.getConnection(url, login, password);}
   else if (manejador==2){//Oracle
-  //DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
-    //conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:", "PROYECTOBD", password);
+      Class.forName("oracle.jdbc.driver.OracleDriver");
+      conexion = DriverManager.getConnection(url,login,password);
   }
   else if (manejador==3){
       //IMPLEMENTAR OTRO
@@ -85,8 +85,12 @@ public void configuraBD(String u, String c, String e, int m){
     login=u;
     password=c;
     bd=e;
+    if (m==1)
     url="jdbc:mysql://localhost/"+e;
+    else if (m==2)
+      url = "jdbc:oracle:thin:@localhost:1521:XE";  
     conectar(m);
+    
 }
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 /**

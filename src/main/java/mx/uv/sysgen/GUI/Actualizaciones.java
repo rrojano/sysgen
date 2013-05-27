@@ -21,7 +21,7 @@ import mx.uv.sysgen.Logica.Cambio;
  */
 public class Actualizaciones extends javax.swing.JFrame {
      String tabla;
-      ResultSet resultados;
+     ResultSet resultados;
   
 
     /**
