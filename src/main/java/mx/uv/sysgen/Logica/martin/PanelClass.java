@@ -83,7 +83,7 @@ public void addelement(String id, int tipo){
     comp.setPreferredSize(new Dimension( 635,29));
     if (this.key==0){comp.setChbxoff();}
     comp.jCheckBox1.setVisible(false);
-    comp.jTextField1.setText(id);
+    comp.idAtributo.setText(id);
     comp.tipoVar.setSelectedIndex(tipo);
     comp.foraneo.setText("Foraneo");
     comp.cerrar.addMouseListener(this);

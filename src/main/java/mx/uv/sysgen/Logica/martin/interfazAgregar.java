@@ -1,9 +1,12 @@
 package mx.uv.sysgen.Logica.martin;
 import mx.uv.sysgen.BD.*;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 
 
@@ -24,6 +27,7 @@ public int index=0;
 public BD bd = new BD();
 public String texto;
 public LinkedList<String> tablas= new LinkedList<String>();
+public boolean espacio;
 
 
     public interfazAgregar() {
@@ -71,6 +75,9 @@ public LinkedList<String> tablas= new LinkedList<String>();
         });
 
         idCatalogo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idCatalogoKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idCatalogoKeyReleased(evt);
             }
@@ -178,11 +185,14 @@ public LinkedList<String> tablas= new LinkedList<String>();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void idCatalogoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyReleased
+        if(espacio == false){
         this.texto=idCatalogo.getText();
         for(int i=0; i<tablas.size();i++){
-            if(texto.equalsIgnoreCase(tablas.get(i).trim())){ocupado.setVisible(true);
+            if(texto.equalsIgnoreCase(tablas.get(i).trim())){
             ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
-            else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}
+            else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}}
+        ocupado.setVisible(true);
+        espacio=false;
         }
          // TODO add your handling code here:
     }//GEN-LAST:event_idCatalogoKeyReleased
@@ -201,6 +211,10 @@ public LinkedList<String> tablas= new LinkedList<String>();
     }
     }//GEN-LAST:event_AceptarActionPerformed
 
+    private void idCatalogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyPressed
+    SEspacio(idCatalogo);            // TODO add your handling code here:
+    }//GEN-LAST:event_idCatalogoKeyPressed
+
 
 public CampoSQL setCampSQL(jpComponente jpc){
     String tipo;
@@ -218,8 +232,30 @@ public CampoSQL setCampSQL(jpComponente jpc){
     if(jpc.jCheckBox1.isSelected()== true){llavePrim=true;}
     else {llavePrim=false;}
     System.out.println(tipo);
-    CampoSQL campo = new CampoSQL(jpc.jTextField1.getText(),tipo,llavePrim,nonulo);
+    CampoSQL campo = new CampoSQL(jpc.idAtributo.getText(),tipo,llavePrim,nonulo);
     return campo;
+}
+
+public void SEspacio(JTextField a){
+a.addKeyListener(new KeyAdapter() {
+public void keyTyped(KeyEvent e){
+    boolean noValido=false;
+    char c=e.getKeyChar();
+    if (!Character.isUnicodeIdentifierPart(c)){
+        getToolkit().beep();
+        espacio=true;
+        e.consume();
+
+    }    
+    if (Character.isSpaceChar(c)){
+        getToolkit().beep();
+        espacio=true;
+        e.consume();
+
+   }
+    
+}
+});
 }
     /**
      * @param args the command line arguments
