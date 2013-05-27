@@ -82,10 +82,10 @@ public void addelement(String id, int tipo){
     jpComponente comp = new jpComponente(index+1);
     comp.setPreferredSize(new Dimension( 635,29));
     if (this.key==0){comp.setChbxoff();}
-    comp.jCheckBox1.setVisible(false);
+    //comp.jCheckBox1.setVisible(false);
     comp.idAtributo.setText(id);
     comp.tipoVar.setSelectedIndex(tipo);
-    comp.foraneo.setText("Foraneo");
+    //comp.foraneo.setText("Foraneo");
     comp.cerrar.addMouseListener(this);
     arreglo.add(comp);
     cont.add(comp);

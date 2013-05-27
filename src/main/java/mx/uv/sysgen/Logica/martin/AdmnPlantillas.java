@@ -19,14 +19,14 @@ import mx.uv.sysgen.BD.BD;
  *
  * @author GON
  */
-public class VPlantilla extends javax.swing.JFrame {
+public class AdmnPlantillas extends javax.swing.JFrame {
  public BD bd=new BD();
  public LinkedList<String> tablas= new LinkedList<String>();
  public LinkedList<String> campos= new LinkedList<String>(); 
 /**
      * Creates new form NewJFrame
      */
-    public VPlantilla() {
+    public AdmnPlantillas() {
         bd.configuraBD("root","12345","taller", 1);
         initComponents();
          
@@ -84,6 +84,11 @@ public class VPlantilla extends javax.swing.JFrame {
         });
 
         modificar.setText("Modificar");
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         eliminar.setText("Eliminar");
 
@@ -170,7 +175,7 @@ public class VPlantilla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-         interfazAgregar inte = new interfazAgregar();
+         Plantilla inte = new Plantilla("");
          this.setVisible(false);
          inte.setVisible(true);
         // TODO add your handling code here:
@@ -190,6 +195,13 @@ public class VPlantilla extends javax.swing.JFrame {
         
     }//GEN-LAST:event_IDCatalogoActionPerformed
 
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+         Plantilla inte = new Plantilla((String) this.IDCatalogo.getSelectedItem());
+         this.setVisible(false);
+         inte.setVisible(true); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,20 +219,20 @@ public class VPlantilla extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdmnPlantillas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdmnPlantillas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdmnPlantillas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VPlantilla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdmnPlantillas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VPlantilla().setVisible(true);
+                new AdmnPlantillas().setVisible(true);
             }
         });
     }
