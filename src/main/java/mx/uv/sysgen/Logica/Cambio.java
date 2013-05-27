@@ -22,8 +22,10 @@ public class Cambio {
      * constructor por defecto
      */
     public Cambio(){
+        Configuración config=new Configuración();
+        config=config.abrirArchivo();
         bdmanager= new BD();
-        bdmanager.configuraBD("root", "123", "taller2", 1);
+        bdmanager.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
         bdmanager.conectar(1);//
         campos = new LinkedList<String>();                    
     }
