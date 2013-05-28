@@ -187,6 +187,28 @@ public LinkedList<String> getCampos(String tabla) throws SQLException{
  * de datos
  * @throws SQLException  error con la conexion
  */
+public LinkedList<String> getCampos(String tabla, int columna) throws SQLException{
+     ResultSet rs=this.consulta("select * from "+tabla);
+     rs.next();
+     System.out.println("select * from "+tabla);
+        
+     try{
+           ResultSetMetaData metaDatos = rs.getMetaData();
+           int numeroColumnas = metaDatos.getColumnCount();
+           LinkedList<String> etiquetas = new LinkedList<String> ();
+           for (int i = 0; i < numeroColumnas; i++){
+               etiquetas.add(metaDatos.getColumnLabel(i + columna));
+               System.out.println(metaDatos.getColumnLabel(i + columna));
+           }
+           return etiquetas;
+     }catch (Exception e) {
+           e.printStackTrace();
+           return null;
+     }
+
+}    
+
+
 public LinkedList <String> getTablas() throws SQLException{
      LinkedList<String> arr= new LinkedList<String>();
     

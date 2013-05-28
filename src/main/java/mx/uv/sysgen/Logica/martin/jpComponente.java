@@ -27,6 +27,7 @@ private int index;
 public String tipodevar="varchar";
 private boolean flag=false;
 public boolean bloqueado=false;
+public boolean espacio;
 
     /**
      * Creates new form jpComponente
@@ -42,7 +43,7 @@ public boolean bloqueado=false;
         this.cerrar.setName(nombre);
         this.nombre="Comp"+index;
         this.cerrar.setName(nombre);
-        SNumeros(this.tamanio);
+        
             
         //("key_"+index)
         //this.jButton1.setActionCommand("key_"+index); 
@@ -61,7 +62,32 @@ public void keyTyped(KeyEvent e){
 }
 });
 }
+public void SOtroCh (JTextField a){
+a.addKeyListener(new KeyAdapter() {
+public void keyTyped(KeyEvent e){
+    char c=e.getKeyChar();
+        if (!Character.isUnicodeIdentifierPart(c)){
+        getToolkit().beep();
+        espacio=true;
+        e.consume();
 
+    }
+}
+});
+}
+
+
+public void SEspacio(JTextField a){
+a.addKeyListener(new KeyAdapter() {
+public void keyTyped(KeyEvent e){
+    char c=e.getKeyChar();
+    if (Character.isSpaceChar(c)){
+        getToolkit().beep();
+        e.consume();
+    }
+}
+});
+}
 
 public String getNombre(){
 return this.nombre;} 
@@ -86,7 +112,7 @@ return this.flag;}
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        idAtributo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         tipoVar = new javax.swing.JComboBox();
@@ -95,6 +121,15 @@ return this.flag;}
         foraneo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tamanio = new javax.swing.JTextField();
+
+        idAtributo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idAtributoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                idAtributoKeyReleased(evt);
+            }
+        });
 
         jLabel1.setText("Nombre (ID):");
 
@@ -128,6 +163,11 @@ return this.flag;}
         jLabel3.setText("Longitud:");
 
         tamanio.setText("20");
+        tamanio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tamanioKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,7 +177,7 @@ return this.flag;}
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +198,7 @@ return this.flag;}
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(idAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jCheckBox1)
                 .addComponent(cerrar)
                 .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,14 +224,30 @@ return this.flag;}
     
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
 
+    private void idAtributoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idAtributoKeyReleased
+   // TODO add your handling code here:
+    }//GEN-LAST:event_idAtributoKeyReleased
+
+    private void idAtributoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idAtributoKeyPressed
+    SOtroCh(this.idAtributo);
+    SEspacio(this.idAtributo);        // TODO add your handling code here:
+    }//GEN-LAST:event_idAtributoKeyPressed
+
+    private void tamanioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tamanioKeyPressed
+     SOtroCh(this.tamanio);
+     SNumeros(this.tamanio);
+     SEspacio(this.tamanio);
+     // TODO add your handling code here:
+    }//GEN-LAST:event_tamanioKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel cerrar;
     public javax.swing.JLabel foraneo;
+    public javax.swing.JTextField idAtributo;
     public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public javax.swing.JTextField jTextField1;
     public javax.swing.JTextField tamanio;
     public javax.swing.JComboBox tipoVar;
     // End of variables declaration//GEN-END:variables
