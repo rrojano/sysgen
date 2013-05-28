@@ -309,24 +309,25 @@ public void keyTyped(KeyEvent e){
     private void iniciar(String tabla) {
     LinkedList<String> campos= new LinkedList<String>(); 
     LinkedList<String> tipo= new LinkedList<String>();
-    
+    LinkedList<String> tamanio = new LinkedList<String>();
     
     this.idCatalogo.setText(tabla);
     try{
-       tipo=bd.getCampos(tabla,2);
-       campos=bd.getCampos(tabla);
+       tipo=bd.getCampos(tabla,1);
+       campos=bd.getCampos(tabla,3);
+       tamanio=bd.getCampos(tabla,2);
         }
         catch(Exception e){
         JOptionPane.showMessageDialog(null, "Tablas no encontradas", "Advertencia",JOptionPane.WARNING_MESSAGE);
         }
-        
+        boolean key=false;
     for (int i=0; i<campos.size(); i++){
-        index++;
+
         String idelemento=campos.get(i);
-        System.out.println(campos.get(i));
+
         
         
-        //panel.addelement(idelemento, );
+        panel.addelement(campos.get(i),tipo.get(i),tamanio.get(i), key);
         scroll.validate();
 
         scroll.setVisible(true);

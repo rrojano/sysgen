@@ -72,6 +72,7 @@ public void addelement(){
     comp.jCheckBox1.addActionListener(this);
     comp.cerrar.addMouseListener(this);
 //Se agrega el componente al arreglo y al panel contenedor
+    
     arreglo.add(comp);
     cont.add(comp);
     setSizeAdd();
@@ -87,6 +88,37 @@ public void addelement(String id, int tipo){
     comp.tipoVar.setSelectedIndex(tipo);
     //comp.foraneo.setText("Foraneo");
     comp.cerrar.addMouseListener(this);
+    arreglo.add(comp);
+    cont.add(comp);
+    setSizeAdd();
+    cont.validate();
+    index++;
+}
+
+public int tipodevar(String tipo){
+int i=0;
+    if(tipo.equals("VARCHAR")){i=0;}
+    if(tipo.equals("INT")){i=1;}
+    if(tipo.equals("DECIMAL")){i=2;}
+    if(tipo.equals("TIME")){i=3;}
+    if(tipo.equals("DATE")){i=4;}
+    return i;
+}
+
+public void addelement(String id, String tipo, String tamanio, boolean llave){
+    jpComponente comp = new jpComponente(index+1);
+    comp.setPreferredSize(new Dimension( 635,29));
+    
+    if (this.key==0){comp.setChbxoff();
+    if (llave=true){comp.jCheckBox1.setSelected(true);key=1;}}
+    comp.idAtributo.setText(id);
+    comp.tipoVar.setSelectedIndex(tipodevar(tipo));
+    comp.tamanio.setText(tamanio);
+    // se agrega este elemento como escucha de eventos a los  elementos en el componente CheckBox y cerrar
+    comp.jCheckBox1.addActionListener(this);
+    comp.cerrar.addMouseListener(this);
+    //Se agrega el componente al arreglo y al panel contenedor
+    
     arreglo.add(comp);
     cont.add(comp);
     setSizeAdd();
