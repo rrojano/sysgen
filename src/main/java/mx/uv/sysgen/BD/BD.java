@@ -18,16 +18,16 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 public class BD {
-public String bd = "algo";//nombre_bd
-public String login = "root";//usuario
-public String password = "Gamblert77";//contraseÃ±a
-public String url = "jdbc:mysql://localhost/"+bd;
+public String bd;//nombre_bd
+public String login;//usuario
+public String password;//contraseÃ±a
+public String url;
 public int manejador = 1; //MySQL
                       // = 2; //Oracle
                       // = 3; //el otro
 Connection conexion = null;
 
-//Conecta la base de datos, usen 1 porque ahora sólo funciona SQL
+//Conecta la base de datos, usen 1 porque ahora sólo funciona SQL o 2 con Oracle
 /**
  * 
  * @param i indica qué manejador se usará, 1=MySQL, 2=Oracle, 3=Otro 
@@ -41,6 +41,7 @@ try {
   Class.forName("com.mysql.jdbc.Driver");  
   conexion = DriverManager.getConnection(url, login, password);}
   else if (manejador==2){//Oracle
+         bd=login;
       Class.forName("oracle.jdbc.driver.OracleDriver");
       conexion = DriverManager.getConnection(url,login,password);
   }
@@ -90,6 +91,7 @@ public void configuraBD(String u, String c, String e, int m){
     else if (m==2)
       url = "jdbc:oracle:thin:@localhost:1521:XE";  
     conectar(m);
+    
     
 }
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
@@ -196,20 +198,12 @@ public LinkedList<String> getCampos(String tabla, int columna) throws SQLExcepti
            ResultSetMetaData metaDatos = rs.getMetaData();
            int numeroColumnas = metaDatos.getColumnCount();
            LinkedList<String> etiquetas = new LinkedList<String> ();
-           switch(columna){
-               case 1: {for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(metaDatos.getColumnTypeName(i + 1));
-               }break;}
-               case 2: {for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(""+metaDatos.getColumnDisplaySize(i+1));
-               }break;}
-               case 3: {for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(metaDatos.getColumnLabel(i+1));
-               }break;}
+           for (int i = 0; i < numeroColumnas; i++){
+               etiquetas.add(metaDatos.getColumnLabel(i + columna));
+               System.out.println(metaDatos.getColumnLabel(i + columna));
            }
-           return etiquetas;}
-     
-     catch (Exception e) {
+           return etiquetas;
+     }catch (Exception e) {
            e.printStackTrace();
            return null;
      }
@@ -219,11 +213,19 @@ public LinkedList<String> getCampos(String tabla, int columna) throws SQLExcepti
 
 public LinkedList <String> getTablas() throws SQLException{
      LinkedList<String> arr= new LinkedList<String>();
-    
+      String[] es={"TABLE"};
       DatabaseMetaData md = this.conexion.getMetaData();
-      ResultSet rs = md.getTables(null, null, "%", null);
       
+      if (this.manejador==2)//Oracle
+          bd=this.bd.toUpperCase();
+      ResultSet rs = md.getTables(null, bd, "%", es);
+      
+      
+            System.out.println("TABLAS");
       while (rs.next()) {
+            System.out.println("||"+"||"+rs.getString(1)+"||"
+                    +"||"+rs.getString(2)+"||"
+                    +"||"+rs.getString(3)+"||");
             arr.add((rs.getString(3)));       
       }
       return arr;
