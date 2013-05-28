@@ -283,6 +283,30 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
 }
 //después se evaluará si los tipos son correctos y se devolverán
 
+public boolean esLlavePrimaria(String tabla, String columna){
+    String algo="";
+         boolean bandera=false;
+         
+    try {
+        
+        
+        DatabaseMetaData meta= conexion.getMetaData();
+        ResultSet rs=meta.getExportedKeys(conexion.getCatalog(), this.bd, tabla);
+        while (rs.next()){
+           String fkColumnName = rs.getString("PKCOLUMN_NAME");
+            if (fkColumnName.equals(columna)){
+                System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE PRIMARIA");
+                bandera= true;
+            }
+                    
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+    }
+         System.out.println("//"+algo);
+         
+        return bandera;
+}
 
     public boolean esLLaveForanea(String tabla, String columna) {
          String algo="";
@@ -292,7 +316,7 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
         
         
         DatabaseMetaData meta= conexion.getMetaData();
-        ResultSet rs=meta.getImportedKeys(conexion.getCatalog(), "algo", tabla);
+        ResultSet rs=meta.getImportedKeys(conexion.getCatalog(), this.bd, tabla);
         while (rs.next()){
            String fkColumnName = rs.getString("FKCOLUMN_NAME");
             if (fkColumnName.equals(columna)){
