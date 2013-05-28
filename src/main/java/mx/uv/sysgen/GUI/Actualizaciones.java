@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.uv.sysgen.BD.BD;
 import mx.uv.sysgen.Logica.Alta;
 import mx.uv.sysgen.Logica.Cambio;
+import mx.uv.sysgen.Logica.Configuración;
 
 /**
  *
@@ -424,8 +425,13 @@ public class Actualizaciones extends javax.swing.JFrame {
         if(CBJ.getSelectedItem()!= null){
          JOptionPane.showMessageDialog(null, "bien.");
         DefaultTableModel modelo = new DefaultTableModel();
+        Configuración config=new Configuración();
+        config=config.abrirArchivo();
         BD base=new BD();
-        base.configuraBD("root", "123", "entrar", 1);
+        base.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
+        base.conectar(1);//      
+//        BD base=new BD();
+//        base.configuraBD("root", "123", "entrar", 1);
         String tab=(String) CBJ.getSelectedItem();
         System.out.println(tab);
         tabla=tab;

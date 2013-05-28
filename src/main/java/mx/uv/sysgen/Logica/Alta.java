@@ -30,8 +30,10 @@ public class Alta {
      * Constructor por defecto.
      */
     public Alta(){
+        Configuración config=new Configuración();
+        config=config.abrirArchivo();
         bdmanager= new BD();
-        bdmanager.configuraBD("root", "123", "entrar", 1);
+        bdmanager.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
         bdmanager.conectar(1);//
         campos = new LinkedList<String>();                    
     }
