@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import mx.uv.sysgen.BD.BD;
+import mx.uv.sysgen.Logica.Configuración;
 
 
 
@@ -27,7 +28,11 @@ public class AdmnPlantillas extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public AdmnPlantillas() {
-        bd.configuraBD("root","12345","taller", 1);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        Configuración conf=new Configuración();
+        conf=conf.abrirArchivo();
+        bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
         initComponents();
          
        try{
