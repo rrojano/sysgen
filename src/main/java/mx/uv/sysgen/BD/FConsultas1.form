@@ -307,6 +307,9 @@
                       <Connection code="new javax.swing.table.DefaultTableModel()" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JTable2MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

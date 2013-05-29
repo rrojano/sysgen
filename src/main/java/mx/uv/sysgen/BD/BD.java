@@ -292,10 +292,18 @@ public boolean esLlavePrimaria(String tabla, String columna){
         
         DatabaseMetaData meta= conexion.getMetaData();
         ResultSet rs=meta.getExportedKeys(conexion.getCatalog(), this.bd, tabla);
+        
         while (rs.next()){
            String fkColumnName = rs.getString("PKCOLUMN_NAME");
+           /*PKTABLE_CAT String => primary key table catalog (may be null)
+PKTABLE_SCHEM String => primary key table schema (may be null)
+PKTABLE_NAME String => primary key table name
+PKCOLUMN_NAME String => primary key column name
+FKTABLE_CAT Str*/
+          System.out.println("|PKTABLE_SCHEM||PKTABLE_CAT||PKCOLUMN_NAME||PKCOLUMN_NAME||FKTABLE_CAT"); 
             if (fkColumnName.equals(columna)){
-                System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE PRIMARIA");
+                System.out.println("|"+rs.getNString(1)+"||"+rs.getNString(2)+"||"+rs.getNString(3)+"||"+rs.getNString(4)+"||"+rs.getNString(5)); 
+                //System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE PRIMARIA");
                 bandera= true;
             }
                     

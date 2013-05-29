@@ -108,7 +108,7 @@ public class FConsultas1 extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultas");
 
         JTable.setModel(new javax.swing.table.DefaultTableModel());
@@ -225,6 +225,11 @@ public class FConsultas1 extends javax.swing.JFrame {
         });
 
         JTable2.setModel(new javax.swing.table.DefaultTableModel());
+        JTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(JTable2);
 
         BTNxml2.setText("XML");
@@ -445,14 +450,22 @@ public class FConsultas1 extends javax.swing.JFrame {
     }//GEN-LAST:event_JTableMouseClicked
 
     private void JTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTable2MouseClicked
-        
+        /*int columna=this.JTable2.getSelectedColumn();
+        boolean res=base.esLlavePrimaria(this.JCBtabla.getSelectedItem().toString(), this.JTable2.getColumnName(columna));
+        if (res==true)
+            System.out.println("SÍ");
+        else
+            System.out.println("NO");
+        */
         String columna=this.JTable2.getColumnName(this.JTable2.getSelectedColumn());
         System.out.println("La columna es: "+columna);
-        boolean baaa=base.esLLaveForanea(tabla,columna);
+        System.out.println("La tabla es: "+this.JCBtabla.getSelectedItem().toString());
+        boolean baaa=base.esLlavePrimaria(this.JCBtabla.getSelectedItem().toString(),columna);
         if (baaa)
-            System.out.println("es llave foranea");
+            System.out.println("es llave primaria");
         else
-            System.out.println("NO es llave foranea");
+            System.out.println("NO es llave primaria");
+        
     }//GEN-LAST:event_JTable2MouseClicked
 
     /**
