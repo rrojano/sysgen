@@ -330,7 +330,11 @@ public void keyTyped(KeyEvent e){
     for (int i=0; i<campos.size(); i++){
 
         String idelemento=campos.get(i);
-
+        if(bd.esLlavePrimaria(tabla, campos.get(i))==true){
+        key=true;
+        }else{
+        key=false;
+        }
         
         
         panel.addelement(campos.get(i),tipo.get(i),tamanio.get(i), key);
