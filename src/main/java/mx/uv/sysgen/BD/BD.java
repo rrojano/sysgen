@@ -292,34 +292,20 @@ public void llaveForanea(String uno,String dos,String campuno,String campdos){
 //después se evaluará si los tipos son correctos y se devolverán
 
 public boolean esLlavePrimaria(String tabla, String columna){
-    String algo="";
-         boolean bandera=false;
-         
+         boolean bandera=false;     
     try {
         DatabaseMetaData meta= conexion.getMetaData();
-        ResultSet rs=meta.getExportedKeys(conexion.getCatalog(), this.bd, tabla);
-        
+        ResultSet rs=meta.getPrimaryKeys(conexion.getCatalog(), this.bd, tabla);
         while (rs.next()){
-           String fkColumnName = rs.getString("PKCOLUMN_NAME");
-           /*PKTABLE_CAT String => primary key table catalog (may be null)
-PKTABLE_SCHEM String => primary key table schema (may be null)
-PKTABLE_NAME String => primary key table name
-PKCOLUMN_NAME String => primary key column name
-FKTABLE_CAT Str*/
-          algo="|PKTABLE_SCHEM||PKTABLE_CAT||PKCOLUMN_NAME||PKCOLUMN_NAME||FKTABLE_CAT\n"; 
+           String fkColumnName = rs.getNString(4);           
             if (fkColumnName.equals(columna)){
-                algo+="|"+rs.getNString(1)+"||"+rs.getNString(2)+"||"+rs.getNString(3)+"||"+rs.getNString(4)+"||"+rs.getNString(5)+"\n"; 
-                //System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE PRIMARIA");
                 bandera= true;
-            }else{System.out.println(columna+" No es LLAMEVE PRIMARIA");}
-                    
+            }    
         }
     } catch (SQLException ex) {
         Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
     }
-         System.out.println("//"+algo);
-         
-        return bandera;
+    return bandera;
 }
 
     public boolean esLLaveForanea(String tabla, String columna) {
