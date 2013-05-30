@@ -295,9 +295,11 @@ public boolean esLlavePrimaria(String tabla, String columna){
          boolean bandera=false;     
     try {
         DatabaseMetaData meta= conexion.getMetaData();
-        ResultSet rs=meta.getPrimaryKeys(conexion.getCatalog(), this.bd, tabla);
+        ResultSet rs;
+            rs=meta.getPrimaryKeys(conexion.getCatalog(), this.bd, tabla);
+            
         while (rs.next()){
-           String fkColumnName = rs.getNString(4);           
+           String fkColumnName = rs.getString("COLUMN_NAME");           
             if (fkColumnName.equals(columna)){
                 bandera= true;
             }    
