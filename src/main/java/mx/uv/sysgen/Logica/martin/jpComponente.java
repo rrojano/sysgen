@@ -188,11 +188,11 @@ return this.flag;}
                 .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(foraneo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addComponent(cerrar)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(foraneo)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,11 +261,11 @@ return this.flag;}
         else{this.tamanio.setEnabled(true);
              this.tamanio.setText("20");}
         switch(this.tipoVar.getSelectedIndex()){
-            case 0: this.tipodevar="varchar";break;
-            case 1: this.tipodevar="integer";break;
-            case 2: this.tipodevar="double";break;
-            case 3: this.tipodevar="date";break;
-            case 4: this.tipodevar="time";break;
+            case 0: this.tipodevar="VARCHAR";break;
+            case 1: this.tipodevar="INTEGER";break;
+            case 2: this.tipodevar="DECIMAL";break;
+            case 3: this.tipodevar="DATE";break;
+            case 4: this.tipodevar="TIME";break;
         }
         
         

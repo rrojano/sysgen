@@ -198,12 +198,20 @@ public LinkedList<String> getCampos(String tabla, int columna) throws SQLExcepti
            ResultSetMetaData metaDatos = rs.getMetaData();
            int numeroColumnas = metaDatos.getColumnCount();
            LinkedList<String> etiquetas = new LinkedList<String> ();
-           for (int i = 0; i < numeroColumnas; i++){
-               etiquetas.add(metaDatos.getColumnLabel(i + columna));
-               System.out.println(metaDatos.getColumnLabel(i + columna));
+           switch(columna){
+               case 1: {for (int i = 0; i < numeroColumnas; i++){
+               etiquetas.add(metaDatos.getColumnTypeName(i + 1));
+               }break;}
+               case 2: {for (int i = 0; i < numeroColumnas; i++){
+               etiquetas.add(""+metaDatos.getColumnDisplaySize(i+1));
+               }break;}
+               case 3: {for (int i = 0; i < numeroColumnas; i++){
+               etiquetas.add(metaDatos.getColumnLabel(i+1));
+               }break;}
            }
-           return etiquetas;
-     }catch (Exception e) {
+           return etiquetas;}
+     
+     catch (Exception e) {
            e.printStackTrace();
            return null;
      }
@@ -303,7 +311,7 @@ FKTABLE_CAT Str*/
                 algo+="|"+rs.getNString(1)+"||"+rs.getNString(2)+"||"+rs.getNString(3)+"||"+rs.getNString(4)+"||"+rs.getNString(5)+"\n"; 
                 //System.out.println("la columna: "+columna+" de la tabla: "+ tabla+" es LLAVE PRIMARIA");
                 bandera= true;
-            }
+            }else{System.out.println(columna+" No es LLAMEVE PRIMARIA");}
                     
         }
     } catch (SQLException ex) {

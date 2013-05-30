@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import mx.uv.sysgen.Logica.Configuración;
 
 
 
@@ -34,7 +35,9 @@ public boolean espacio;
 
 
     public Plantilla(String ap) {
-        bd.configuraBD("root","12345","taller", 1);
+        Configuración conf=new Configuración();
+        conf=conf.abrirArchivo();
+        bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
         initComponents();
         if(ap!=""){iniciar(ap);}
         
@@ -212,8 +215,11 @@ public boolean espacio;
     tabla.add(setCampSQL(jpc));    
     }
     bd.crearTabla(idCatalogo.getText(), tabla);
-    
+         AdmnPlantillas inte = new AdmnPlantillas();
+         inte.setVisible(true);
+         this.dispose();
     }
+    
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void idCatalogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyPressed
@@ -224,7 +230,7 @@ public boolean espacio;
 public CampoSQL setCampSQL(jpComponente jpc){
     String tipo;
     boolean nonulo=false;;
-    if(jpc.tipodevar.equalsIgnoreCase("date")||jpc.tipodevar.equalsIgnoreCase("date")){
+    if(jpc.tipodevar.equalsIgnoreCase("DATE")||jpc.tipodevar.equalsIgnoreCase("TIME")){
     tipo=jpc.tipodevar;}
     else{ 
     tipo=jpc.tipodevar+"("+jpc.tamanio.getText()+")";
@@ -324,7 +330,11 @@ public void keyTyped(KeyEvent e){
     for (int i=0; i<campos.size(); i++){
 
         String idelemento=campos.get(i);
-
+        if(bd.esLlavePrimaria(tabla, campos.get(i))==true){
+        key=true;
+        }else{
+        key=false;
+        }
         
         
         panel.addelement(campos.get(i),tipo.get(i),tamanio.get(i), key);
