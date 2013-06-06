@@ -6,21 +6,12 @@ package mx.uv.sysgen.BD;
 
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mx.uv.sysgen.Logica.Configuración;
@@ -31,10 +22,10 @@ import mx.uv.sysgen.Logica.Configuración;
  */
 public class FConsultas1 extends javax.swing.JFrame {
     ResultSet resultados;
-    String u;
-    String c;
-    String e;
-    int m;
+    String usuario;
+    String contraseña;
+    String esquema;
+    int manejador;
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
@@ -52,15 +43,15 @@ public class FConsultas1 extends javax.swing.JFrame {
     initComponents();    
         Configuración config=new Configuración();
         config=config.abrirArchivo();
-                       c=config.getContraseña();
-                       u=config.getUsuario();
-                       e=config.getEsquema();
-                       m=config.getManejador();
-                       if (m==1){   
+                       contraseña=config.getContraseña();
+                       usuario=config.getUsuario();
+                       esquema=config.getEsquema();
+                       manejador=config.getManejador();
+                       if (manejador==1){   
                            LBLmanejador.setText("Manejador: MySQL");
                            LBLmanejador2.setText("Manejador: MySQL");
                        }
-                       else if (m==2){
+                       else if (manejador==2){
                            LBLmanejador.setText("Manejador: Oracle");
                            LBLmanejador2.setText("Manejador: Oracle");
                        }   
@@ -68,11 +59,11 @@ public class FConsultas1 extends javax.swing.JFrame {
                            LBLmanejador.setText("Manejador: Otro");
                            LBLmanejador2.setText("Manejador: Otro");
                        }
-                       System.out.println("contraseña="+c);
-                       System.out.println("usuario="+u);
-                       System.out.println("esquema="+e);
-                       System.out.println("manejador="+m);
-          base.configuraBD(u, c, e, m);
+                       System.out.println("contraseña="+contraseña);
+                       System.out.println("usuario="+usuario);
+                       System.out.println("esquema="+esquema);
+                       System.out.println("manejador="+manejador);
+          base.configuraBD(usuario, contraseña, esquema, manejador);
     }
 
     /**
