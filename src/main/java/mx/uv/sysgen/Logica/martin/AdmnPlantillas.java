@@ -28,7 +28,7 @@ public class AdmnPlantillas extends javax.swing.JFrame {
 
     public AdmnPlantillas() {
         this.setResizable(false);
-        this.setLocationRelativeTo(null); 
+        //this.setLocationRelativeTo(null); 
         conf=conf.abrirArchivo();
         bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
         initComponents();
