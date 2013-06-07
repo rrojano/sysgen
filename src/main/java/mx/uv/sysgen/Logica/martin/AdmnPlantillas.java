@@ -24,13 +24,11 @@ public class AdmnPlantillas extends javax.swing.JFrame {
  public BD bd=new BD();
  public LinkedList<String> tablas= new LinkedList<String>();
  public LinkedList<String> campos= new LinkedList<String>(); 
-/**
-     * Creates new form NewJFrame
-     */
+ private Configuración conf=new Configuración();
+
     public AdmnPlantillas() {
         this.setResizable(false);
-        this.setLocationRelativeTo(null);
-        Configuración conf=new Configuración();
+        this.setLocationRelativeTo(null); 
         conf=conf.abrirArchivo();
         bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
         initComponents();
@@ -96,6 +94,11 @@ public class AdmnPlantillas extends javax.swing.JFrame {
         });
 
         eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Cancelar");
 
@@ -206,6 +209,39 @@ public class AdmnPlantillas extends javax.swing.JFrame {
          inte.setVisible(true); 
         // TODO add your handling code here:
     }//GEN-LAST:event_modificarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        Plantilla inte = new Plantilla((String) this.IDCatalogo.getSelectedItem());
+        
+  if(JOptionPane.showConfirmDialog(null,"Eliminara la Plantilla "+this.IDCatalogo.getSelectedItem(), "Advertencia", JOptionPane.WARNING_MESSAGE)==0){
+     //aceptar
+     bd.eliminarTabla((String) this.IDCatalogo.getSelectedItem());
+     prop.removeAllItems();
+     IDCatalogo.removeAllItems();     
+     bd.desconectar();
+     conf=conf.abrirArchivo();
+     bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
+        try{
+        tablas=bd.getTablas();
+        }
+        catch(Exception e){
+        //JOptionPane.showMessageDialog(null, "Tablas no encontradas", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+    CargarCampos(this.IDCatalogo,tablas); 
+    String elSelec=(String) IDCatalogo.getSelectedItem();
+    
+       try{
+       campos=bd.getCampos(elSelec);
+        }
+        catch(Exception e){
+        //JOptionPane.showMessageDialog(null, "Tablas no encontradas", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+      
+  }
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
