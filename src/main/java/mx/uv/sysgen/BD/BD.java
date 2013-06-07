@@ -362,6 +362,16 @@ public boolean esLlavePrimaria(String tabla, String columna){
         }catch (Exception e){
             System.out.println("error");
         }
+     
+    }
+    public void eliminarTabla(String tabla){
+    String sentencia="drop table "+tabla;
+    try{
+        Statement st = conexion.createStatement();
+        st.executeUpdate(sentencia);
+        }catch (Exception e){
+            System.out.println("error");
+        }
     }
     
 }
