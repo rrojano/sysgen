@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import mx.uv.sysgen.BD.FConsultas1;
+import mx.uv.sysgen.Logica.martin.*;
 
 /**
  *
@@ -110,11 +111,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });                
 /* ------------------ CREAMOS LAS OPCIONES DEL MENU INFRAESTRUCTURA------------------------- */        
       
-           op_generarPlantillas = new JMenuItem("Generar Plantilla",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\infraestructura.png"));
+           op_generarPlantillas = new JMenuItem("Administrar Plantilla",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\infraestructura.png"));
         op_generarPlantillas.setAccelerator(KeyStroke.getKeyStroke('P',java.awt.event.InputEvent.ALT_MASK));
          op_generarPlantillas.addActionListener(new ActionListener(){           
             public void actionPerformed(ActionEvent e) {
-              
+            AdmnPlantillas adm = new AdmnPlantillas();
+            adm.setVisible(true);
             }
         });
          
