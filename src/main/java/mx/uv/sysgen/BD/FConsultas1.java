@@ -22,18 +22,10 @@ import mx.uv.sysgen.Logica.Configuración;
  */
 public class FConsultas1 extends javax.swing.JFrame {
     ResultSet resultados;
-    String usuario;
-    String contraseña;
-    String esquema;
-    int manejador;
     String tabla;
     LinkedList<String> letreros=new LinkedList<String>();
     LinkedList<JTextField> campos=new LinkedList<JTextField>();
-    BD base=new BD();
-
-
-
-    
+    BD base=new BD(); 
     
     /**
      * Creates new form FConsultas
@@ -43,15 +35,12 @@ public class FConsultas1 extends javax.swing.JFrame {
     initComponents();    
         Configuración config=new Configuración();
         config=config.abrirArchivo();
-                       contraseña=config.getContraseña();
-                       usuario=config.getUsuario();
-                       esquema=config.getEsquema();
-                       manejador=config.getManejador();
-                       if (manejador==1){   
+                       
+                       if (config.getManejador()==1){   
                            LBLmanejador.setText("Manejador: MySQL");
                            LBLmanejador2.setText("Manejador: MySQL");
                        }
-                       else if (manejador==2){
+                       else if (config.getManejador()==2){
                            LBLmanejador.setText("Manejador: Oracle");
                            LBLmanejador2.setText("Manejador: Oracle");
                        }   
@@ -59,11 +48,7 @@ public class FConsultas1 extends javax.swing.JFrame {
                            LBLmanejador.setText("Manejador: Otro");
                            LBLmanejador2.setText("Manejador: Otro");
                        }
-                       System.out.println("contraseña="+contraseña);
-                       System.out.println("usuario="+usuario);
-                       System.out.println("esquema="+esquema);
-                       System.out.println("manejador="+manejador);
-          base.configuraBD(usuario, contraseña, esquema, manejador);
+          base.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
     }
 
     /**
