@@ -459,7 +459,7 @@ public class Actualizaciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
         }else {
           // la eliminamos del modelo:
-        modelo.removeRow(fila_select);
+             modelo.removeRow(fila_select);
       //   logica_alta.Agregar(c, jComboBox1.getSelectedItem().toString());
    //     Baja.elimina(c, jComboBox1.getSelectedItem().toString());
         }     
