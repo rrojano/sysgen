@@ -467,8 +467,28 @@ public class Actualizaciones extends javax.swing.JFrame {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
-        if (evt.getSource()==jComboBox3){        
-            obtenerDatos();
+        // Nuevamente obtenemos el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Configuración config=new Configuración();
+        config=config.abrirArchivo();
+        BD base=new BD();
+        base.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
+        base.conectar(1);//
+        //ahora obtenemos la fila selccionada
+        int fila_select = jTable1.getSelectedRow();
+              if(fila_select<0){
+              // no se puede eliminar
+            JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
+                    }else {
+                
+                    // la eliminamos del modelo:
+                     String tab=(String) CBJ.getSelectedItem();
+                     System.out.println(tab);
+                      tabla=tab;
+                      String sql ="delete from "+  tabla +" where usuario='"+ jTable1.getValueAt(fila_select, 0)+"';";
+                          base.insertar(sql);  
+                      modelo.removeRow(fila_select);
+ 
         }
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
