@@ -65,10 +65,12 @@ public class Cambio {
     public boolean cambiar(String tabla, LinkedList<String> tupla, LinkedList<String> campos){
         String id = campos.pop();
         String id_value  = tupla.pop();
-        String query = "update "+tabla+" set ";        
+        String query = "update "+tabla+" set ";               
         for(String s:campos){
-        query = query + s + "="+"'"+ tupla.pop() + "' ";    
+        query = query + s + "="+"'"+ tupla.pop() + "', ";    
         }
+        String newquery = query.substring(0, query.length()-1);
+        query = newquery.substring(0, newquery.length()-1);
         query = query + " where "+ id +"='"+ id_value +"';";
         System.out.println(query);
         bdmanager.insertar(query);

@@ -93,7 +93,7 @@ public void configuraBD(String u, String c, String e, int m){
     conectar(m);
     
     
-}
+} 
 //a partir de una sentencia SQL se pueden insertar o eliminar tuplas
 /**
  * 

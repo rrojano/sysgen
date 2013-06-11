@@ -420,18 +420,16 @@ public class Actualizaciones extends javax.swing.JFrame {
     private void CBJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBJActionPerformed
         
              if (evt.getSource()== CBJ){
-        //falta funcion para recuperar datos de la tabla seleccionada
+        
         LinkedList<String> c;
         if(CBJ.getSelectedItem()!= null){
-         JOptionPane.showMessageDialog(null, "bien.");
+       //  JOptionPane.showMessageDialog(null, "bien.");
         DefaultTableModel modelo = new DefaultTableModel();
         Configuración config=new Configuración();
         config=config.abrirArchivo();
         BD base=new BD();
         base.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
-        base.conectar(1);//      
-//        BD base=new BD();
-//        base.configuraBD("root", "123", "entrar", 1);
+        base.conectar(1);      
         String tab=(String) CBJ.getSelectedItem();
         System.out.println(tab);
         tabla=tab;
@@ -450,26 +448,36 @@ public class Actualizaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_CBJActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      // Nuevamente obtenemos el modelo de la tabla
+            // Nuevamente obtenemos el modelo de la tabla
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Configuración config=new Configuración();
+        config=config.abrirArchivo();
+        BD base=new BD();
+        base.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(), config.getManejador());
+        base.conectar(1);//
         //ahora obtenemos la fila selccionada
         int fila_select = jTable1.getSelectedRow();
-        if(fila_select<0){
-            // no se puede eliminar
+              if(fila_select<0){
+              // no se puede eliminar
             JOptionPane.showMessageDialog(this,"Tabla vacia o no ha seleccionado uan fila.");
-        }else {
-          // la eliminamos del modelo:
-        modelo.removeRow(fila_select);
-      //   logica_alta.Agregar(c, jComboBox1.getSelectedItem().toString());
-   //     Baja.elimina(c, jComboBox1.getSelectedItem().toString());
-        }     
+                    }else {
+                
+                    // la eliminamos del modelo:
+                     String tab=(String) CBJ.getSelectedItem();
+                     System.out.println(tab);
+                      tabla=tab;
+                      String sql ="delete from "+  tabla +" where usuario='"+ jTable1.getValueAt(fila_select, 0)+"';";
+                          base.insertar(sql);  
+                      modelo.removeRow(fila_select);
+ 
+        }    
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
-        if (evt.getSource()==jComboBox3){        
-            obtenerDatos();
-        }
+      if(evt.getSource()==jComboBox3){
+         obtenerDatos();      
+      }
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
