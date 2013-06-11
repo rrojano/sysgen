@@ -73,7 +73,8 @@ public boolean espacio;
         Importar = new javax.swing.JButton();
         ocupado = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Plantilla");
 
         Agregar.setText("+");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
