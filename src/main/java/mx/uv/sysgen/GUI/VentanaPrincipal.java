@@ -4,12 +4,12 @@
  */
 package mx.uv.sysgen.GUI;
 
+import mx.uv.sysgen.Logica.plantillas.AdmnPlantillas;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import mx.uv.sysgen.BD.FConsultas1;
-import mx.uv.sysgen.Logica.martin.*;
 
 /**
  *
