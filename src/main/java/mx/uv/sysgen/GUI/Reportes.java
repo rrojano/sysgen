@@ -9,6 +9,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,92 +63,48 @@ List<String> ids = new ArrayList<String>();
      public void ObtenerTablas(){ 
          
         Configuración config=new Configuración();//creamos un objeto de la clase Configuracion 
-        m=config.getManejador();/*obtenemos el manegador que estamos utilizando 
-         uno para mysql y dos para oracle */
-            
-          //creamos un nuevo obtejo llamado conexion de ConexionSQL
+        config=config.abrirArchivo();
+        m=config.getManejador();
             BD conexion = new BD();
-            /*declaramos una variable conn de tipo Connection a la cual le asignaremos el resultado que nos
-             devuelbe el metodo Conectar*/                            
-            Connection conn = conexion.conectar(m);
-            /*Recuperamos los metadatos de la base de datos.Los metadatos incluyen información sobre
-             las tablas de la base de datos*/
-           CBTablas.addItem("");//asignamos una cadena vacia al combobox de Tablas
-         if(conn!=null){    
+            conexion.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(),config.getManejador());
          try {
-            DatabaseMetaData metadata=conn.getMetaData();
-            /* Con este metodo tendremos los nombres de las tablas que tiene nuestra BD*/
-            /*•catálogo de la base de datos. Al poner null, estamos preguntando por el catálogo (BD) actual                     
-              •Esquema de la base de datos. Al poner null, es el actual.
-              •Patrón para las tablas en las que tenemos interés. En SQL el caracter que indica "todo" es % .
-               Esto nos dará todas las tablas del catálogo y esquema actual.  
-              •El cuarto parámetro es un array de String, en el que pondríamos qué tipos de tablas queremos
-              (normales, vistas, etc). Al poner null, nos devolverá todos los tipos de tablas.*/
-                    ResultSet rs = metadata.getTables(null, null, "%", null);
-                    while(rs.next()){
-                    //String catalogo = rs.getString(1);//obtenemos el nombre del catalogo (BD) que tenemos
-                    String tabla = rs.getString(3);//obtenemos el nombre de las tablas de nuestro catalogo
-                    //System.out.println("TABLA=" + catalogo + "." + tabla); 
-                    CBTablas.addItem(tabla);//cargamos un ComboBox con los nombres de las Tablas                     
-                 }
-        } catch (SQLException ex) {
+            LinkedList<String> ls=conexion.getTablas();
+            for (int i=0;i<ls.size();i++){
+                CBTablas.addItem(ls.get(i));
+            }
+         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
-           
-        }      
-      }
-         else{
-             JOptionPane.showMessageDialog(null,"No se pueden cargar los datos, verifieque la "
-                                        + "conexión de la Base de Datos","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
          }
+            
+            //CBTablas.addItem("");//asignamos una cadena vacia al combobox de Tablas
+         
+         
     }
      
      /* Método que sirve para obtener los Campos de las tabals de la BD*/
      public void CargarCampos(){
          DefaultListModel model = new DefaultListModel();
-         BD conexion=new BD();
-         
-            /*declaramos una variable conn de tipo Connection a la cual le asignaremos el resultado que nos
-             devuelbe el metodo Conectar*/
-           
-            Connection conn  = conexion.conectar(1);      
-            /*Recuperamos los metadatos de la base de datos.Los metadatos incluyen información sobre
-             las tablas de la base de datos*/
-                      
-         if(conn!=null){ 
-             JCheckBox CBAtributo;
+         Configuración config=new Configuración();//creamos un objeto de la clase Configuracion 
+        config=config.abrirArchivo();
+        m=config.getManejador();
+            BD conexion = new BD();
+            conexion.configuraBD(config.getUsuario(), config.getContraseña(), config.getEsquema(),config.getManejador());
+            
+            tab=(String) CBTablas.getSelectedItem();
+            if (CBTablas.getSelectedItem()!=""){
          try {
-            DatabaseMetaData metadata=conn.getMetaData();
-            /* Con este metodo tendremos los nombres de las tablas que tiene nuestra BD*/
-            /*•catálogo de la base de datos. Al poner null, estamos preguntando por el catálogo (BD) actual                     
-              •Esquema de la base de datos. Al poner null, es el actual.
-              •Patrón para las tablas en las que tenemos interés. En SQL el caracter que indica "todo" es % .
-               Esto nos dará todas las tablas del catálogo y esquema actual.  
-              •El cuarto parámetro es un array de String, en el que pondríamos qué tipos de tablas queremos
-              (normales, vistas, etc). Al poner null, nos devolverá todos los tipos de tablas.*/
-             tab=(String) CBTablas.getSelectedItem();
-             if (CBTablas.getSelectedItem()!=""){
-                    ResultSet rs = metadata.getColumns(null, null,tab, null);
-                   while (rs.next()) {
-                   // El contenido de cada columna del ResultSet se puede ver en
-                   // la API de java, en el metodo getColumns() de DataBaseMetaData
-                   // La 4 corresponde al TABLE_NAME
-                   // y la 6 al TYPE_NAME
-                     nombreColumna = rs.getString(4);
-                    //ids.add(nombreColumna);
-                    model.addElement(nombreColumna);                   
-                                        
-                 }
+            LinkedList<String> ls=conexion.getCampos(tab);
+            for (int i=0;i<ls.size();i++){
+                model.addElement(ls.get(i));
             }
-        } catch (SQLException ex) {
+         } catch (SQLException ex) {
             Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null, ex);
-           
-        }      
-      }
-         else{
-             JOptionPane.showMessageDialog(null,"No se pueden cargar los datos, verifieque la "
-                                        + "conexión de la Base de Datos","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
          }
+            }
          LAtributos.setModel(model);
+                      
+         
+         
      }
      public void SeleccionarCampos(){
          ids.clear();//Elimino los campos  que se encuentran en la en el array list
@@ -179,8 +136,6 @@ List<String> ids = new ArrayList<String>();
         jLabel1 = new javax.swing.JLabel();
         PReporte = new javax.swing.JPanel();
         JBMaestro = new javax.swing.JButton();
-        JBMaestroDetalle = new javax.swing.JButton();
-        LMDetalle = new javax.swing.JLabel();
         LMaestro = new javax.swing.JLabel();
         PDatos = new javax.swing.JPanel();
         PAtributos = new javax.swing.JPanel();
@@ -203,21 +158,11 @@ List<String> ids = new ArrayList<String>();
 
         PReporte.setBorder(javax.swing.BorderFactory.createTitledBorder("TIPO DE REPORTE"));
 
-        JBMaestro.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\maestro.png")); // NOI18N
         JBMaestro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBMaestroActionPerformed(evt);
             }
         });
-
-        JBMaestroDetalle.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\maestro-detalle.png")); // NOI18N
-        JBMaestroDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBMaestroDetalleActionPerformed(evt);
-            }
-        });
-
-        LMDetalle.setText("MAESTRO- DETALLE");
 
         LMaestro.setText("MAESTRO");
 
@@ -225,30 +170,23 @@ List<String> ids = new ArrayList<String>();
         PReporte.setLayout(PReporteLayout);
         PReporteLayout.setHorizontalGroup(
             PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PReporteLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(PReporteLayout.createSequentialGroup()
                 .addGroup(PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(PReporteLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(115, 115, 115)
+                        .addComponent(JBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PReporteLayout.createSequentialGroup()
+                        .addGap(145, 145, 145)
                         .addComponent(LMaestro)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JBMaestroDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LMDetalle))
-                .addGap(32, 32, 32))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PReporteLayout.setVerticalGroup(
             PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PReporteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JBMaestro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBMaestroDetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LMDetalle)
-                    .addComponent(LMaestro)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JBMaestro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LMaestro))
         );
 
         PDatos.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS"));
@@ -296,7 +234,6 @@ List<String> ids = new ArrayList<String>();
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        BGenerar.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\reporte.png")); // NOI18N
         BGenerar.setText("Generar Rep");
         BGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +241,6 @@ List<String> ids = new ArrayList<String>();
             }
         });
 
-        BCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\cancelar.png")); // NOI18N
         BCancelar.setText("Cancelar");
         BCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +250,6 @@ List<String> ids = new ArrayList<String>();
 
         LBTitulo.setText("TITULO DEL REPORTE");
 
-        Bseleccionar.setIcon(new javax.swing.ImageIcon("C:\\Users\\clemente\\Desktop\\sysgen\\src\\main\\java\\mx\\uv\\sysgen\\Assets\\seleccionar.png")); // NOI18N
         Bseleccionar.setText("Seleccionado");
         Bseleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,18 +333,13 @@ List<String> ids = new ArrayList<String>();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(PDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void JBMaestroDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMaestroDetalleActionPerformed
-          JOptionPane.showMessageDialog(null,"","INFORMACIÓN",JOptionPane.INFORMATION_MESSAGE); 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JBMaestroDetalleActionPerformed
 
     private void JBMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBMaestroActionPerformed
         // TODO add your handling code here:
@@ -491,10 +421,8 @@ List<String> ids = new ArrayList<String>();
     private javax.swing.JButton Bseleccionar;
     private javax.swing.JComboBox CBTablas;
     private javax.swing.JButton JBMaestro;
-    private javax.swing.JButton JBMaestroDetalle;
     private javax.swing.JList LAtributos;
     private javax.swing.JLabel LBTitulo;
-    private javax.swing.JLabel LMDetalle;
     private javax.swing.JLabel LMaestro;
     private javax.swing.JPanel PAtributos;
     private javax.swing.JPanel PDatos;

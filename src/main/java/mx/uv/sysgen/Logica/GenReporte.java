@@ -17,8 +17,10 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.DefaultListModel;
 import mx.uv.sysgen.BD.BD;
 
@@ -28,11 +30,12 @@ List<String>Valores=new ArrayList<String>();/*Lista que guardara el contenido de
 Document document = new Document();
 Integer tam;
 String tablaSe;
-
+List<String> titulos;
 public GenReporte(){
      
  }
  public void GenerarReporte(String TituloR,List<String> ids,String tabla) {
+     titulos=ids;
    tablaSe=tabla;
     try {
      // Document document = new Document();
@@ -63,21 +66,25 @@ public GenReporte(){
             }
         }
      System.out.print(tam);    
-     for (int i=1;i<=tam;i++){
-     Contenido(i);
      
-     }
+     Contenido();
+     
+     
   }
-  public void Contenido(int i) throws DocumentException {
+  public void Contenido() throws DocumentException {
              
          try {
             BD conexion=new BD();     
-            Connection conn  = conexion.conectar(1); 
+            Configuración config=new Configuración();
+            config=config.abrirArchivo();
+            conexion.configuraBD(config.getUsuario(),config.getContraseña(),config.getEsquema() ,config.getManejador());
+            ResultSet rs=conexion.consulta("SELECT"+" "+" * "+" "+"FROM"+" "+tablaSe);
             
-            java.sql.Statement st =  conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT"+" "+" * "+" "+"FROM"+" "+tablaSe); 
+            int filas=0;       
         while (rs.next())
-        {        
+        {  
+           filas++;
+           for (int i=1;i<=titulos.size();i++)
            Valores.add(rs.getString(i));
         }
         } catch (SQLException ex) {
@@ -87,12 +94,19 @@ public GenReporte(){
            DefaultListModel model = new DefaultListModel(); 
            PdfPTable Tabla=new PdfPTable(tam);
            //Integer tam=Valores.size();
-          
+            for( int j=0; j < titulos.size(); j++ ) {
+                    // model.addElement(Valores.get(j));
+                    //document.add(new Paragraph(Valores.get(j)+"      "));  /* para agregar texto por parrafo*/
+                     Tabla.addCell(new Paragraph(this.titulos.get(j)));
+              }
+            
             for( int j=0; j < Valores.size(); j++ ) {
                     // model.addElement(Valores.get(j));
                     //document.add(new Paragraph(Valores.get(j)+"      "));  /* para agregar texto por parrafo*/
-                     Tabla.addCell(new Paragraph(Valores.get(j)+"\n")); /*para agregar una tabla y dentro de las celda agregar las datos*/
+                     Tabla.addCell(new Paragraph(this.Valores.get(j)));
               }
+            
+            
             document.add(Tabla);
       Valores.clear();//limpio la lista
       
