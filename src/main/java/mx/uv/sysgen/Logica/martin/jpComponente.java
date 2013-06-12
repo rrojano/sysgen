@@ -93,13 +93,16 @@ public String getNombre(){
 return this.nombre;} 
 
 public void setChbxoff(){
-this.jCheckBox1.setEnabled(false);
+this.Llave.setEnabled(false);
 }
 public void setChbxon(){
-this.jCheckBox1.setEnabled(true);
+this.Llave.setEnabled(true);
 }
 public int getIndex(){
 return this.index;} 
+
+public void setSelected(){
+this.Llave.setSelected(true);}
 
 public boolean getFlag(){
 return this.flag;}
@@ -114,7 +117,7 @@ return this.flag;}
 
         idAtributo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Llave = new javax.swing.JCheckBox();
         tipoVar = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cerrar = new javax.swing.JLabel();
@@ -133,10 +136,10 @@ return this.flag;}
 
         jLabel1.setText("Nombre (ID):");
 
-        jCheckBox1.setText("Llave");
-        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        Llave.setText("Llave");
+        Llave.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBox1ItemStateChanged(evt);
+                LlaveItemStateChanged(evt);
             }
         });
 
@@ -187,7 +190,7 @@ return this.flag;}
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(Llave)
                 .addGap(6, 6, 6)
                 .addComponent(cerrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,7 +202,7 @@ return this.flag;}
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1)
                 .addComponent(idAtributo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox1)
+                .addComponent(Llave)
                 .addComponent(cerrar)
                 .addComponent(tipoVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel2)
@@ -220,9 +223,9 @@ return this.flag;}
       
     }//GEN-LAST:event_cerrarMouseExited
 
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+    private void LlaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_LlaveItemStateChanged
     
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+    }//GEN-LAST:event_LlaveItemStateChanged
 
     private void idAtributoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idAtributoKeyReleased
    // TODO add your handling code here:
@@ -241,10 +244,10 @@ return this.flag;}
     }//GEN-LAST:event_tamanioKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JCheckBox Llave;
     public javax.swing.JLabel cerrar;
     public javax.swing.JLabel foraneo;
     public javax.swing.JTextField idAtributo;
-    public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

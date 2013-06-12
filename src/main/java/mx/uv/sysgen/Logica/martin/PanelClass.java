@@ -69,7 +69,7 @@ public void addelement(){
     if (this.key==0){comp.setChbxoff();} //si es 0 desactiva el checkbox del componente que se cree
 
 // se agrega este elemento como escucha de eventos a los  elementos en el componente CheckBox y cerrar
-    comp.jCheckBox1.addActionListener(this);
+    comp.Llave.addActionListener(this);
     comp.cerrar.addMouseListener(this);
 //Se agrega el componente al arreglo y al panel contenedor
     
@@ -109,13 +109,13 @@ public void addelement(String id, String tipo, String tamanio, boolean llave){
     jpComponente comp = new jpComponente(index+1);
     comp.setPreferredSize(new Dimension( 635,29));
     
-    if (this.key==0){comp.setChbxoff();
-    if (llave=true){comp.jCheckBox1.setSelected(true);key=1;}}
+    if (this.key==0){comp.setChbxoff();}
+    if (llave=true){comp.setSelected();key=0;}
     comp.idAtributo.setText(id);
     comp.tipoVar.setSelectedIndex(tipodevar(tipo));
     comp.tamanio.setText(tamanio);
     // se agrega este elemento como escucha de eventos a los  elementos en el componente CheckBox y cerrar
-    comp.jCheckBox1.addActionListener(this);
+    comp.Llave.addActionListener(this);
     comp.cerrar.addMouseListener(this);
     //Se agrega el componente al arreglo y al panel contenedor
     
@@ -132,7 +132,7 @@ public void addelement(String id, String tipo, String tamanio, boolean llave){
             jpComponente jpc = (jpComponente) arreglo.get(i);
             switch (key){
                 case 0:
-                    if(jpc.jCheckBox1.isSelected()== false){
+                    if(jpc.Llave.isSelected()== false){
                     jpc.setChbxoff();
                     }else{
                     jpc.bloqueado=true;

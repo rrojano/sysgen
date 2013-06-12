@@ -31,17 +31,15 @@
               <Component id="idCatalogo" min="-2" pref="180" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="ocupado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="250" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               <Component id="Agregar" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Component id="Importar" min="-2" pref="85" max="-2" attributes="0"/>
-              <EmptySpace pref="185" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="Aceptar" min="-2" pref="88" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="Regresar" min="-2" pref="88" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -60,9 +58,8 @@
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="Aceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Agregar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Importar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="Regresar" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -89,12 +86,12 @@
         <Property name="text" type="java.lang.String" value="ID Catalogo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="Regresar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegresarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Aceptar">
@@ -109,14 +106,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="Importar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Importar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ImportarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="ocupado">

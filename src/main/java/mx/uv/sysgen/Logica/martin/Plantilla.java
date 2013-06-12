@@ -31,21 +31,26 @@ public BD bd = new BD();
 public String texto;
 public LinkedList<String> tablas= new LinkedList<String>();
 public boolean espacio;
+public boolean vacio=false;
+public String modo;
 
 
 
-    public Plantilla(String ap) {
+    public Plantilla(String IDTabla,String modo) {
         Configuración conf=new Configuración();
         conf=conf.abrirArchivo();
+        this.modo=modo;
         bd.configuraBD(conf.getUsuario(),conf.getContraseña(),conf.getEsquema(), conf.getManejador());
         initComponents();
-        if(ap!=""){iniciar(ap);}
-        
+
         try{
         tablas=bd.getTablas();}
         catch(Exception e){
         JOptionPane.showMessageDialog(null, "Tablas no encontradas", "Advertencia",JOptionPane.WARNING_MESSAGE);}
-  
+        
+        if(tablas.size()<1){vacio=true;}
+        else{vacio=false;}
+        
         ocupado.setVisible(false);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -57,7 +62,18 @@ public boolean espacio;
         scroll.setViewportView(panel.getPanel());
         this.getContentPane().add(scroll); 
         this.pack();
-        scroll.setVisible(true);    
+        scroll.setVisible(true);  
+        
+        
+        if(modo.equalsIgnoreCase("modificar")){
+        ocupado.setText("Modificando");
+        ocupado.setForeground(Color.blue);
+        ocupado.setVisible(true);
+        
+        if(IDTabla!=""){
+        iniciar(IDTabla);}
+        bd.eliminarTabla(IDTabla);
+        }
     }
 
 
@@ -68,9 +84,8 @@ public boolean espacio;
         Agregar = new javax.swing.JButton();
         idCatalogo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
         Aceptar = new javax.swing.JButton();
-        Importar = new javax.swing.JButton();
         ocupado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -94,10 +109,10 @@ public boolean espacio;
 
         jLabel1.setText("ID Catalogo");
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Regresar.setText("Regresar");
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegresarActionPerformed(evt);
             }
         });
 
@@ -107,13 +122,6 @@ public boolean espacio;
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AceptarActionPerformed(evt);
-            }
-        });
-
-        Importar.setText("Importar");
-        Importar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImportarActionPerformed(evt);
             }
         });
 
@@ -131,16 +139,14 @@ public boolean espacio;
                 .addComponent(idCatalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ocupado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(Importar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
@@ -155,9 +161,8 @@ public boolean espacio;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Agregar)
-                        .addComponent(Importar))
-                    .addComponent(jButton1))
+                        .addComponent(Agregar))
+                    .addComponent(Regresar))
                 .addGap(26, 26, 26))
         );
 
@@ -174,43 +179,49 @@ public boolean espacio;
         this.pack();
     }//GEN-LAST:event_AgregarActionPerformed
 
-    private void ImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportarActionPerformed
-        index++;
-        Importar imp = new Importar();
-        
-        panel.addelement(imp.getId(),imp.getTipo());
-        scroll.validate();
-
-        scroll.setVisible(true);
-        
-        this.pack();  
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ImportarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         AdmnPlantillas inte = new AdmnPlantillas();
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+    
+        AdmnPlantillas inte = new AdmnPlantillas();
          inte.setVisible(true);
          this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegresarActionPerformed
 
     private void idCatalogoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyReleased
-        if(espacio == false){
+     if(vacio==false){
         this.texto=idCatalogo.getText();
+        if (this.modo.equalsIgnoreCase("agregar")){
         for(int i=0; i<tablas.size();i++){
             if(texto.equalsIgnoreCase(tablas.get(i).trim())){
             ocupado.setForeground(Color.red);ocupado.setText("Ocupado");}
             else{ocupado.setForeground(Color.green);ocupado.setText("Libre");}}
         ocupado.setVisible(true);
-        espacio=false;
+        espacio=false;}
+        if(this.modo.equalsIgnoreCase("modificar")){
+        ocupado.setForeground(Color.blue);ocupado.setText("Modificando");
+        ocupado.setVisible(true);
         }
-         // TODO add your handling code here:
+     }else{
+     ocupado.setForeground(Color.green);ocupado.setText("Libre");
+     ocupado.setVisible(true);
+     espacio=false;
+     }
+           
+      
     }//GEN-LAST:event_idCatalogoKeyReleased
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
     LinkedList<CampoSQL> tabla= new LinkedList<CampoSQL>();
+    if(panel.arreglo.size()!= 0){
+    
     if(this.ocupado.getText().equalsIgnoreCase("Ocupado") || this.idCatalogo.getText().equalsIgnoreCase(""))
     {JOptionPane.showMessageDialog(null, "Revise el nombre del catálogo", "Advertencia",JOptionPane.WARNING_MESSAGE);}
-    else {JOptionPane.showMessageDialog(null, "El catálogo se agregó correctamente.", "Advertencia",JOptionPane.WARNING_MESSAGE);
+    else {
+        if(modo.equalsIgnoreCase("modificar")){      
+        JOptionPane.showMessageDialog(null, "El catálogo se modifico correctamente.", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "El catálogo se agregó correctamente.", "Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
     for (int i=0; i<panel.arreglo.size(); i++){
         jpComponente jpc = (jpComponente) panel.arreglo.get(i); 
     tabla.add(setCampSQL(jpc));    
@@ -220,7 +231,7 @@ public boolean espacio;
          inte.setVisible(true);
          this.dispose();
     }
-    
+    }else{JOptionPane.showMessageDialog(null, "No puede agregar una plantilla sin atributos.", "Advertencia",JOptionPane.WARNING_MESSAGE);}
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void idCatalogoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idCatalogoKeyPressed
@@ -241,7 +252,7 @@ public CampoSQL setCampSQL(jpComponente jpc){
     else{nonulo=false;}
     }
     boolean llavePrim;
-    if(jpc.jCheckBox1.isSelected()== true){llavePrim=true;}
+    if(jpc.Llave.isSelected()== true){llavePrim=true;}
     else {llavePrim=false;}
     System.out.println(tipo);
     CampoSQL campo = new CampoSQL(jpc.idAtributo.getText(),tipo,llavePrim,nonulo);
@@ -299,16 +310,15 @@ public void keyTyped(KeyEvent e){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Plantilla("").setVisible(true);
+                new Plantilla("","").setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Agregar;
-    private javax.swing.JButton Importar;
+    private javax.swing.JButton Regresar;
     private javax.swing.JTextField idCatalogo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel ocupado;
     // End of variables declaration//GEN-END:variables
