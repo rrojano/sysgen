@@ -19,6 +19,7 @@ import javax.swing.*;
 import mx.uv.sysgen.Logica.GenerarReporte;
 import mx.uv.sysgen.Logica.Configuración;
 import mx.uv.sysgen.Logica.GenReporte;
+import mx.uv.sysgen.Logica.GenReporte2;
 
 
 
@@ -171,21 +172,20 @@ List<String> ids = new ArrayList<String>();
         PReporteLayout.setHorizontalGroup(
             PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PReporteLayout.createSequentialGroup()
-                .addGroup(PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PReporteLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(JBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PReporteLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(LMaestro)))
+                .addGap(110, 110, 110)
+                .addComponent(JBMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PReporteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LMaestro)
+                .addGap(145, 145, 145))
         );
         PReporteLayout.setVerticalGroup(
             PReporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PReporteLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(JBMaestro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LMaestro))
         );
 
@@ -333,7 +333,7 @@ List<String> ids = new ArrayList<String>();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(PReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -358,7 +358,7 @@ List<String> ids = new ArrayList<String>();
        tabla=tab;
      // GenerarReporte GenerarR =new GenerarReporte();
        //        GenerarR.EjecutarReporte(ids,tituloR);
-       GenReporte  Reporte = new GenReporte();        
+       GenReporte2  Reporte = new GenReporte2();        
             Reporte.GenerarReporte(tituloR,ids,tabla);       
     }//GEN-LAST:event_BGenerarActionPerformed
 

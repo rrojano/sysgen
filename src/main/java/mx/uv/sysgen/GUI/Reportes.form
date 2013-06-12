@@ -18,6 +18,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -69,66 +70,34 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="JBMaestro" min="-2" pref="109" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="LMaestro" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="JBMaestro" min="-2" pref="109" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="JBMaestroDetalle" min="-2" pref="108" max="-2" attributes="0"/>
-                      <Component id="LMDetalle" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="LMaestro" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="JBMaestro" max="32767" attributes="0"/>
-                      <Component id="JBMaestroDetalle" max="32767" attributes="0"/>
-                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="LMDetalle" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="LMaestro" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="JBMaestro" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="LMaestro" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JButton" name="JBMaestro">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\clemente\Desktop\sysgen\src\main\java\mx\uv\sysgen\Assets\maestro.png"/>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBMaestroActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="JBMaestroDetalle">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\clemente\Desktop\sysgen\src\main\java\mx\uv\sysgen\Assets\maestro-detalle.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBMaestroDetalleActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LMDetalle">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="MAESTRO- DETALLE"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LMaestro">
           <Properties>
@@ -313,9 +282,6 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="BGenerar">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\clemente\Desktop\sysgen\src\main\java\mx\uv\sysgen\Assets\reporte.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Generar Rep"/>
               </Properties>
               <Events>
@@ -324,9 +290,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="BCancelar">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\clemente\Desktop\sysgen\src\main\java\mx\uv\sysgen\Assets\cancelar.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
               <Events>
@@ -342,9 +305,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="Bseleccionar">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\clemente\Desktop\sysgen\src\main\java\mx\uv\sysgen\Assets\seleccionar.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Seleccionado"/>
               </Properties>
               <Events>
