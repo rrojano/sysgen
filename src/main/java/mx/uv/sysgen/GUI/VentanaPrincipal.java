@@ -6,6 +6,7 @@ package mx.uv.sysgen.GUI;
 
 import mx.uv.sysgen.Logica.plantillas.AdmnPlantillas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -57,7 +58,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
  /* ------------------ CREAMOS LAS OPCIONES DEL MENU ARCHIVO------------------------- */        
        
        
-        op_salir = new JMenuItem("Salir",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\salir.png"));
+        op_salir = new JMenuItem("Salir",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/salir.png"));
         op_salir.setAccelerator(KeyStroke.getKeyStroke('S',java.awt.event.InputEvent.CTRL_MASK));
         op_salir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {            
@@ -69,7 +70,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
         
         
-        op_imprimir = new JMenuItem("Imprimir",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\impresora.png"));
+        op_imprimir = new JMenuItem("Imprimir",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/impresora.png"));
         op_imprimir.setAccelerator(KeyStroke.getKeyStroke('P',java.awt.event.InputEvent.CTRL_MASK));
         op_imprimir.addActionListener(new ActionListener(){           
             public void actionPerformed(ActionEvent e) {
@@ -80,7 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         
  /* ------------------ CREAMOS LAS OPCIONES DEL MENU ACERVO------------------------- */            
-       op_actualizarCatalogos = new JMenuItem("Actualizar Catalogos",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\acervo.png"));
+       op_actualizarCatalogos = new JMenuItem("Actualizar Catalogos",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/acervo.png"));
         op_actualizarCatalogos.setAccelerator(KeyStroke.getKeyStroke('C',java.awt.event.InputEvent.ALT_MASK));
         op_actualizarCatalogos.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {               
@@ -90,7 +91,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 /* ------------------ CREAMOS LAS OPCIONES DE CONSULTAS------------------------- */            
-       op_consultas = new JMenuItem("Consultas",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\consultas.png"));
+       op_consultas = new JMenuItem("Consultas",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/consultas.png"));
         op_consultas.setAccelerator(KeyStroke.getKeyStroke('Q',java.awt.event.InputEvent.ALT_MASK));
         op_consultas.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {               
@@ -100,7 +101,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });        
 /* ------------------ CREAMOS LAS OPCIONES DE CONFIGURACIÓN------------------------- */            
-       op_opciones= new JMenuItem("Opciones",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\configurar.png"));
+       op_opciones= new JMenuItem("Opciones",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/configuracion.png"));
         op_opciones.setAccelerator(KeyStroke.getKeyStroke('O',java.awt.event.InputEvent.ALT_MASK));
         op_opciones.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {               
@@ -111,7 +112,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });                
 /* ------------------ CREAMOS LAS OPCIONES DEL MENU INFRAESTRUCTURA------------------------- */        
       
-           op_generarPlantillas = new JMenuItem("Administrar Plantilla",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\infraestructura.png"));
+           op_generarPlantillas = new JMenuItem("Administrar Plantilla",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/infraestructura.png"));
         op_generarPlantillas.setAccelerator(KeyStroke.getKeyStroke('P',java.awt.event.InputEvent.ALT_MASK));
          op_generarPlantillas.addActionListener(new ActionListener(){           
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +123,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
          
          
    /* ------------------ CREAMOS LAS OPCIONES DEL MENU SERVICIO ------------------------- */          
-      op_generarReportes= new JMenuItem("Generar Reporte",new ImageIcon("C:\\Users\\clemente\\Desktop\\Universidad\\iconos\\servicios.png"));
+      op_generarReportes= new JMenuItem("Generar Reporte",new ImageIcon("src/main/java/mx/uv/sysgen/Assets/servicios.png"));
         op_generarReportes.setAccelerator(KeyStroke.getKeyStroke('R',java.awt.event.InputEvent.ALT_MASK));
          op_generarReportes.addActionListener(new ActionListener(){           
             public void actionPerformed(ActionEvent e) {
